@@ -13,4 +13,8 @@ public class MoviesClass {
         this.nome = nome;
 
     }
+
+    public int getNumero() {
+        return numero;
+    }
 }
