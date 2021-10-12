@@ -6,6 +6,7 @@ public class MoviesClass {
     String id;
     String ciao;
     String cognome;
+    String provaSimo;
 
     public MoviesClass( String nome, String cognome, String id ){
         this.nome = nome;
