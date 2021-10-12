@@ -4,6 +4,7 @@ public class MoviesClass {
 
     String nome;
     String id;
+    String ciao;
     String cognome;
 
     public MoviesClass( String nome, String cognome, String id ){
@@ -20,7 +21,6 @@ public class MoviesClass {
     public String getNome() {
         return nome;
     }
-
     public String getCognome(){
         return cognome;
     }
