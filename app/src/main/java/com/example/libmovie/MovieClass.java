@@ -12,4 +12,7 @@ public class MovieClass {
     public String getName(){
         return name;
     }
+    public int getImageId(){
+        return imageId;
+    }
 }
