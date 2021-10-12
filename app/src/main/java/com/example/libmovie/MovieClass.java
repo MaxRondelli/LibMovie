@@ -10,6 +10,8 @@ public class MovieClass {
         this.imageId = imageId;
     }
 
+    String prov = null;
+
     public String getName(){
         return name;
     }
