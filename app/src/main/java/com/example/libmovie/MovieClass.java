@@ -8,4 +8,8 @@ public class MovieClass {
         this.name = name;
         this.imageId = imageId;
     }
+
+    public String getName(){
+        return name;
+    }
 }
