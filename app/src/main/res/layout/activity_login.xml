@@ -55,13 +55,4 @@
         android:textColor="@color/design_default_color_primary"
         android:backgroundTint="@color/white"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/register"
-        android:layout_below="@+id/sign_in"
-        android:text="Register"
-        android:backgroundTint="@color/design_default_color_primary"
-        android:layout_centerHorizontal="true"/>
-
 </RelativeLayout>

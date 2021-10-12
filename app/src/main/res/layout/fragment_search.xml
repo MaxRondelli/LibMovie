@@ -2,22 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/design_default_color_primary"
     android:id="@+id/search">
 
-    <SearchView
+    <include layout="@layout/element_searchbar"
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/shape_search"
-        android:iconifiedByDefault="false" />
+        android:layout_height="wrap_content"/>
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout_search"
+        android:id="@+id/tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/search_bar">
@@ -42,11 +35,11 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewpager_search"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/tab_layout_search"
-        android:background="@color/design_default_color_on_primary"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_string"
+        android:textSize="30sp"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>

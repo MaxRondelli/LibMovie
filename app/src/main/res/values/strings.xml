@@ -11,7 +11,7 @@
     <string name="search_string">Search</string>
     <string name="stats_string">Stats</string>
     <string name="account_string">Account</string>
-
+    
     <!-- Home strings -->
     <string name="in_theaters">In theaters</string>
     <string name="coming_soon">Coming soon</string>
@@ -36,6 +36,4 @@
     <string name="genre">Select genre</string>
     <string name="order_by">Order by</string>
     <string name="layout_style">Layout style</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
