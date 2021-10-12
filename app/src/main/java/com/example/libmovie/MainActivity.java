@@ -4,18 +4,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
+import android.graphics.Movie;
 import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
-    static String[] array = {"film1","film2","film3"};
+    static List<MovieClass> movieList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        movieList.add(new MovieClass("film1", R.drawable.icon_android));
+        movieList.add(new MovieClass("film2", R.drawable.icon_account));
+        movieList.add(new MovieClass("film3", R.drawable.icon_android));
+        movieList.add(new MovieClass("film4", R.drawable.icon_search));
 
 
         NavigationBarView bottomNav = findViewById(R.id.bottom_navigation);

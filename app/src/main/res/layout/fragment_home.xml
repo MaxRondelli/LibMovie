@@ -19,7 +19,7 @@
     </Toolbar>
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab"
+        android:id="@+id/tab_layout_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar">
@@ -49,12 +49,10 @@
             android:text="@string/most_popular"/>
     </com.google.android.material.tabs.TabLayout>
 
-    <ListView
-        android:id="@+id/list"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tab" />
-
-
+        android:layout_below="@+id/tab_layout_home"/>
 
 </RelativeLayout>
