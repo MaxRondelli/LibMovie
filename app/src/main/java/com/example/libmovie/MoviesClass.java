@@ -13,6 +13,10 @@ public class MoviesClass {
 
     }
 
+    public boolean vero(){
+        boolean tmp = false;
+        return tmp;
+    }
     public String getNome() {
         return nome;
     }
