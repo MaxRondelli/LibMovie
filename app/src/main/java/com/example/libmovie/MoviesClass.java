@@ -6,7 +6,9 @@ public class MoviesClass {
 
     int numero = 0;
     int prova = 1;
-    
+    boolean booleano = false;
+
+
     public MoviesClass( String nome ){
         this.nome = nome;
 
