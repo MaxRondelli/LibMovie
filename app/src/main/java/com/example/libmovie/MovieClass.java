@@ -3,6 +3,8 @@ package com.example.libmovie;
 public class MovieClass {
     public String name;
     public int imageId;
+    int provaCiccio = 0;
+
 
     MovieClass(String name, int imageId) {
         this.name = name;

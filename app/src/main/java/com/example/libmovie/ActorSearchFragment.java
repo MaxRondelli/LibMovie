@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActorSearchFragment extends Fragment implements SearchView.OnQueryTextListener{
+public class ActorSearchFragment extends Fragment implements SearchView.OnQueryTextListener {
     ListAdapter la;
     View view;
     View top;
@@ -47,15 +47,15 @@ public class ActorSearchFragment extends Fragment implements SearchView.OnQueryT
         return view;
     }
 
-    public void reload(){
+    public void reload() {
         lw = (ListView) view.findViewById(R.id.list);
         search= (SearchView) top.findViewById(R.id.search_bar);
         search.setOnQueryTextListener(this);
         ListView lw = (ListView) view.findViewById(R.id.list);
         ListAdapter la;
         List<MovieClass> tmp = new ArrayList<>();
-        for(int i=0; i<MainActivity.movieList.size(); i++){
-            if(MainActivity.movieList.get(i).name.contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()){
+        for (int i=0; i<MainActivity.movieList.size(); i++) {
+            if(MainActivity.movieList.get(i).name.contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()) {
                 tmp.add(MainActivity.movieList.get(i));
                 System.out.println("equals" + i);
             }

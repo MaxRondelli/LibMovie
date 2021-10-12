@@ -47,15 +47,15 @@ public class DirectorSearchFragment extends Fragment implements SearchView.OnQue
             return view;
         }
 
-    public void reload(){
+    public void reload() {
         lw = (ListView) view.findViewById(R.id.list);
         search= (SearchView) top.findViewById(R.id.search_bar);
         search.setOnQueryTextListener(this);
         ListView lw = (ListView) view.findViewById(R.id.list);
         ListAdapter la;
         List<MovieClass> tmp = new ArrayList<>();
-        for(int i=0; i<MainActivity.movieList.size(); i++){
-            if(MainActivity.movieList.get(i).name.contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()){
+        for(int i=0; i<MainActivity.movieList.size(); i++) {
+            if(MainActivity.movieList.get(i).name.contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()) {
                 tmp.add(MainActivity.movieList.get(i));
                 System.out.println("equals" + i);
             }
@@ -65,26 +65,26 @@ public class DirectorSearchFragment extends Fragment implements SearchView.OnQue
     }
 
 
-        @Override
-        public boolean onQueryTextSubmit (String s){
-            return false;
-        }
-
-        @Override
-        public boolean onQueryTextChange (String s){
-            ListView lw = (ListView) view.findViewById(R.id.list);
-            ListAdapter la;
-            List<MovieClass> tmp = new ArrayList<>();
-            for (int i = 0; i < MainActivity.movieList.size(); i++) {
-                if (MainActivity.movieList.get(i).name.contains(s)) {
-                    tmp.add(MainActivity.movieList.get(i));
-                    System.out.println("equals" + i);
-                }
-            }
-            la = new ListAdapter(getActivity().getBaseContext(), tmp);
-            lw.setAdapter(la);
-            SearchFragment.filter = s;
-            //System.out.println("text: " + SearchFragment.filter);
-            return false;
-        }
+    @Override
+    public boolean onQueryTextSubmit (String s){
+        return false;
     }
+
+    @Override
+    public boolean onQueryTextChange (String s){
+        ListView lw = (ListView) view.findViewById(R.id.list);
+        ListAdapter la;
+        List<MovieClass> tmp = new ArrayList<>();
+        for (int i = 0; i < MainActivity.movieList.size(); i++) {
+            if (MainActivity.movieList.get(i).name.contains(s)) {
+                tmp.add(MainActivity.movieList.get(i));
+                System.out.println("equals" + i);
+            }
+        }
+        la = new ListAdapter(getActivity().getBaseContext(), tmp);
+        lw.setAdapter(la);
+        SearchFragment.filter = s;
+        //System.out.println("text: " + SearchFragment.filter);
+        return false;
+    }
+}
