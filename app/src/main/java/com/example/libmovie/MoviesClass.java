@@ -6,8 +6,6 @@ public class MoviesClass {
     String id;
     String cognome;
 
-    static String nomeFile = "Tre Uomini e una Gamba";
-
     public MoviesClass( String nome, String cognome, String id ){
         this.nome = nome;
         this.cognome = cognome;
@@ -24,9 +22,5 @@ public class MoviesClass {
     }
     public String getId() {
         return id;
-    }
-
-    public static void main(String[] args) {
-        System.out.println( nomeFile );
     }
 }
