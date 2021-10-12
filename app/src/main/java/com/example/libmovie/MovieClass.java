@@ -4,7 +4,7 @@ public class MovieClass {
     public String name;
     public int imageId;
 
-    String provaCiccio = "ei";
+    String provaCiccio = "rrr";
 
     MovieClass(String name, int imageId) {
         this.name = name;
