@@ -11,6 +11,7 @@ public class MovieClass {
     }
 
     String prov = null;
+    String prova1 = null;
 
     public String getName(){
         return name;
