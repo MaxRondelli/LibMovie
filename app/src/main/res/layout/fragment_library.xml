@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/library">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout_library"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/not_watched_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/not_watched_string"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/watched_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/watched_string"/>
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager_library"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tab_layout_library"/>
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:layout_width="332dp"
+        android:layout_height="472dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:animateLayoutChanges="false"
+        app:menu_colorNormal="@color/design_default_color_primary"
+        app:menu_colorPressed="@color/design_default_color_primary"
+        app:menu_icon="@drawable/icon_options">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/order_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_orderby"
+            app:fab_colorNormal="@color/design_default_color_primary"
+            app:fab_colorPressed="@color/design_default_color_primary"
+            app:fab_label="@string/order_by" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/genre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_genre"
+            app:fab_colorNormal="@color/design_default_color_primary"
+            app:fab_colorPressed="@color/design_default_color_primary"
+            app:fab_label="@string/genre" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/layout_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_layout"
+            app:fab_colorNormal="@color/design_default_color_primary"
+            app:fab_colorPressed="@color/design_default_color_primary"
+            app:fab_label="@string/layout_style" />
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+</RelativeLayout>
