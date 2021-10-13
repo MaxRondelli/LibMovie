@@ -24,7 +24,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    static List<MovieClass> movieList = new ArrayList<>();
+  /*  static List<MovieClass> movieList = new ArrayList<>();
     static List<ActorClass> actorList = new ArrayList<>();
     static List<DirectorClass> directorList = new ArrayList<>();
 
@@ -34,18 +34,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        movieList.add(new MovieClass("Le ali della libertà", R.drawable.icon_android,true,true,true));
-        movieList.add(new MovieClass("Il padrino", R.drawable.icon_android,true,true,true));
-        movieList.add(new MovieClass("Il padrino - Parte II", R.drawable.icon_android,false,true,false));
-        movieList.add(new MovieClass("Il cavaliere oscuro", R.drawable.icon_android,false,false,true));
+        movieList.add(new MovieClass("Le ali della libertà", R.drawable.icon_android, true, true, true));
+        movieList.add(new MovieClass("Il padrino", R.drawable.icon_android, true, true, true));
+        movieList.add(new MovieClass("Il padrino - Parte II", R.drawable.icon_android, false, true, false));
+        movieList.add(new MovieClass("Il cavaliere oscuro", R.drawable.icon_android, false, false, true));
 
-        actorList.add(new ActorClass("Ciccio Marino",R.drawable.icon_android));
-        actorList.add(new ActorClass("Ciccio Top",R.drawable.icon_android));
-        actorList.add(new ActorClass("Ciccio Stop",R.drawable.icon_android));
+        actorList.add(new ActorClass("Ciccio Marino", R.drawable.icon_android));
+        actorList.add(new ActorClass("Ciccio Top", R.drawable.icon_android));
+        actorList.add(new ActorClass("Ciccio Stop", R.drawable.icon_android));
 
-        directorList.add(new DirectorClass("Simone Basile",R.drawable.icon_android));
-        directorList.add(new DirectorClass("Simone Top",R.drawable.icon_android));
-        directorList.add(new DirectorClass("Simone Stop",R.drawable.icon_android));
+        directorList.add(new DirectorClass("Simone Basile", R.drawable.icon_android));
+        directorList.add(new DirectorClass("Simone Top", R.drawable.icon_android));
+        directorList.add(new DirectorClass("Simone Stop", R.drawable.icon_android));
 
 
         NavigationBarView bottomNav = findViewById(R.id.bottom_navigation);
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         URL url;
         HttpURLConnection con;
 
-        try {
+        /*try {
             url = new URL("http://api.themoviedb.org/3/movie/550?api_key=c1180ea0157a385a1b0a30ba3183e640/3/movie/550");
             con = (HttpURLConnection) url.openConnection();
             con.setDoOutput(true);
@@ -106,5 +106,5 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
                 return true;
-            };
-}
+            };*/
+    }
