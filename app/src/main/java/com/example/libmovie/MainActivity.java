@@ -15,16 +15,26 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     static List<MovieClass> movieList = new ArrayList<>();
+    static List<ActorClass> actorList = new ArrayList<>();
+    static List<DirectorClass> directorList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        movieList.add(new MovieClass("film1", R.drawable.icon_android));
-        movieList.add(new MovieClass("film2", R.drawable.icon_account));
-        movieList.add(new MovieClass("film3", R.drawable.icon_android));
-        movieList.add(new MovieClass("film4", R.drawable.icon_search));
+        movieList.add(new MovieClass("Le ali della libertà", R.drawable.icon_android,true,true,true));
+        movieList.add(new MovieClass("Il padrino", R.drawable.icon_android,true,true,true));
+        movieList.add(new MovieClass("Il padrino - Parte II", R.drawable.icon_android,false,true,false));
+        movieList.add(new MovieClass("Il cavaliere oscuro", R.drawable.icon_android,false,false,true));
+
+        actorList.add(new ActorClass("Ciccio Marino",R.drawable.icon_android));
+        actorList.add(new ActorClass("Ciccio Top",R.drawable.icon_android));
+        actorList.add(new ActorClass("Ciccio Stop",R.drawable.icon_android));
+
+        directorList.add(new DirectorClass("Simone Basile",R.drawable.icon_android));
+        directorList.add(new DirectorClass("Simone Top",R.drawable.icon_android));
+        directorList.add(new DirectorClass("Simone Stop",R.drawable.icon_android));
 
 
         NavigationBarView bottomNav = findViewById(R.id.bottom_navigation);

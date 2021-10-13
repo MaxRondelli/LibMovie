@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InTheaterFragment extends Fragment {
     @Nullable
     @Override
@@ -19,7 +22,15 @@ public class InTheaterFragment extends Fragment {
         ListView lw = (ListView) view.findViewById(R.id.list);
 
         ListAdapter la;
-        la = new ListAdapter(getActivity().getBaseContext(),MainActivity.movieList);
+
+        List<MovieClass> tmp = new ArrayList<>();
+        for (int i = 0; i < MainActivity.movieList.size(); i++) {
+            if (MainActivity.movieList.get(i).out==true) {
+                tmp.add(MainActivity.movieList.get(i));
+            }
+        }
+
+        la = new ListAdapter(getActivity().getBaseContext(),tmp);
         lw.setAdapter(la);
 
         return view;

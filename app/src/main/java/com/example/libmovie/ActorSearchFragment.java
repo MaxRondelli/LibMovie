@@ -13,9 +13,10 @@ import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ActorSearchFragment extends Fragment implements SearchView.OnQueryTextListener {
-    ListAdapter la;
+    ListAdapterA la;
     View view;
     View top;
     ListView lw;
@@ -34,15 +35,14 @@ public class ActorSearchFragment extends Fragment implements SearchView.OnQueryT
         search= (SearchView) top.findViewById(R.id.search_bar);
         //search.setOnQueryTextListener(this);
 
-        List<MovieClass> tmp = new ArrayList<>();
-        for (int i = 0; i < MainActivity.movieList.size(); i++) {
-            if (MainActivity.movieList.get(i).name.contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()) {
-                tmp.add(MainActivity.movieList.get(i));
-                System.out.println("equals" + i);
+        List<ActorClass> tmp = new ArrayList<>();
+        for (int i = 0; i < MainActivity.actorList.size(); i++) {
+            if (MainActivity.actorList.get(i).name.toLowerCase().contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()) {
+                tmp.add(MainActivity.actorList.get(i));
             }
         }
 
-        la = new ListAdapter(getActivity().getBaseContext(),tmp);
+        la = new ListAdapterA(getActivity().getBaseContext(),tmp);
         lw.setAdapter(la);
         return view;
     }
@@ -52,15 +52,14 @@ public class ActorSearchFragment extends Fragment implements SearchView.OnQueryT
         search= (SearchView) top.findViewById(R.id.search_bar);
         search.setOnQueryTextListener(this);
         ListView lw = (ListView) view.findViewById(R.id.list);
-        ListAdapter la;
-        List<MovieClass> tmp = new ArrayList<>();
-        for (int i=0; i<MainActivity.movieList.size(); i++) {
-            if(MainActivity.movieList.get(i).name.contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()) {
-                tmp.add(MainActivity.movieList.get(i));
-                System.out.println("equals" + i);
+        ListAdapterA la;
+        List<ActorClass> tmp = new ArrayList<>();
+        for (int i=0; i<MainActivity.actorList.size(); i++) {
+            if(MainActivity.actorList.get(i).name.toLowerCase().contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()) {
+                tmp.add(MainActivity.actorList.get(i));
             }
         }
-        la = new ListAdapter(getActivity().getBaseContext(), tmp);
+        la = new ListAdapterA(getActivity().getBaseContext(), tmp);
         lw.setAdapter(la);
     }
     @Override
@@ -70,19 +69,18 @@ public class ActorSearchFragment extends Fragment implements SearchView.OnQueryT
 
     @Override
     public boolean onQueryTextChange(String s) {
+        s = s.toLowerCase();
         ListView lw = (ListView) view.findViewById(R.id.list);
-        ListAdapter la;
-        List<MovieClass> tmp = new ArrayList<>();
-        for(int i=0; i<MainActivity.movieList.size(); i++){
-            if(MainActivity.movieList.get(i).name.contains(s)){
-                tmp.add(MainActivity.movieList.get(i));
-                System.out.println("equals" + i);
+        ListAdapterA la;
+        List<ActorClass> tmp = new ArrayList<>();
+        for(int i=0; i<MainActivity.actorList.size(); i++){
+            if(MainActivity.actorList.get(i).name.toLowerCase().contains(s)){
+                tmp.add(MainActivity.actorList.get(i));
             }
         }
-        la = new ListAdapter(getActivity().getBaseContext(), tmp);
+        la = new ListAdapterA(getActivity().getBaseContext(), tmp);
         lw.setAdapter(la);
-        SearchFragment.filter = s;
-        System.out.println("text: " + SearchFragment.filter);
+        SearchFragment.filter = s.toLowerCase();
         return false;
     }
 }

@@ -14,6 +14,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MovieSearchFragment extends Fragment implements SearchView.OnQueryTextListener {
     ListAdapter la;
@@ -36,7 +37,7 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
         search.setOnQueryTextListener(this);
         List<MovieClass> tmp = new ArrayList<>();
         for (int i = 0; i < MainActivity.movieList.size(); i++) {
-            if (MainActivity.movieList.get(i).name.contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()) {
+            if (MainActivity.movieList.get(i).name.toLowerCase().contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()) {
                 tmp.add(MainActivity.movieList.get(i));
                 System.out.println("equals" + i);
             }
@@ -57,9 +58,8 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
         ListAdapter la;
         List<MovieClass> tmp = new ArrayList<>();
         for(int i=0; i<MainActivity.movieList.size(); i++){
-            if(MainActivity.movieList.get(i).name.contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()){
+            if(MainActivity.movieList.get(i).name.toLowerCase().toLowerCase().contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()){
                 tmp.add(MainActivity.movieList.get(i));
-                System.out.println("equals" + i);
             }
         }
         la = new ListAdapter(getActivity().getBaseContext(), tmp);
@@ -73,19 +73,18 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
 
     @Override
     public boolean onQueryTextChange(String s) {
+        s = s.toLowerCase();
         ListView lw = (ListView) view.findViewById(R.id.list);
         ListAdapter la;
         List<MovieClass> tmp = new ArrayList<>();
         for(int i=0; i<MainActivity.movieList.size(); i++){
-            if(MainActivity.movieList.get(i).name.contains(s)){
+            if(MainActivity.movieList.get(i).name.toLowerCase().contains(s)){
                 tmp.add(MainActivity.movieList.get(i));
-                System.out.println("equals" + i);
             }
         }
         la = new ListAdapter(getActivity().getBaseContext(), tmp);
         lw.setAdapter(la);
-        SearchFragment.filter = s;
-        System.out.println("text: " + SearchFragment.filter);
+        SearchFragment.filter = s.toLowerCase();
         return false;
     }
 }
