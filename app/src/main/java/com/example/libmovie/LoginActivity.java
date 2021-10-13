@@ -36,17 +36,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void openMain() {
-        EditText username = (EditText)findViewById(R.id.username);
-        String userText = username.getText().toString();
-
-        EditText et = (EditText)findViewById(R.id.password);
-        String pswText = et.getText().toString();
-
-        Intent intent = new Intent(this, MainActivity.class);
         try {
+            EditText username = (EditText)findViewById(R.id.username);
+            String userText = username.getText().toString();
+
+            EditText et = (EditText)findViewById(R.id.password);
+            String pswText = et.getText().toString();
+
+            Intent intent = new Intent(this, MainActivity.class);
             FileInputStream fin = openFileInput("user.txt");
             int c='\n';
-            while(c=='\n') {
+            while(c=='\n' && !userText.isEmpty() && !pswText.isEmpty()) {
                 String user = "";
                 String psw = "";
                 while ((c = fin.read()) != ' ') {
