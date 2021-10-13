@@ -7,6 +7,7 @@ public class MovieClass {
     boolean out;
     boolean isTopRated;
     boolean isMostPopular;
+    int ciccio;
 
     MovieClass(String name, int imageId,boolean out,boolean isTopRated,boolean isMostPopular) {
         this.name = name;

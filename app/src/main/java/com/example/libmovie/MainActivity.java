@@ -10,10 +10,14 @@ import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +52,28 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        URL url;
+        HttpURLConnection con;
+
+        try {
+            url = new URL("http://api.themoviedb.org/3/movie/550?api_key=c1180ea0157a385a1b0a30ba3183e640/3/movie/550");
+            con = (HttpURLConnection) url.openConnection();
+            con.setDoOutput(true);
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Content-Type", "application/json");
+        }catch(Exception e){
+            System.err.println(e.toString());
+        }
+        try{
+            BufferedReader br = new BufferedReader(new InputStreamReader((con.getInputStream())));
+            String output;
+            System.out.println("Output from Server .... \n");
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+            }
+        }catch(Exception e){
+            System.err.println(e.toString());
+        }
     }
 
     @SuppressLint("NonConstantResourceId")
