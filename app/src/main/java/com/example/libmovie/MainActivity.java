@@ -24,7 +24,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-  /*  static List<MovieClass> movieList = new ArrayList<>();
+    static List<MovieClass> movieList = new ArrayList<>();
     static List<ActorClass> actorList = new ArrayList<>();
     static List<DirectorClass> directorList = new ArrayList<>();
 
@@ -52,28 +52,6 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-        URL url;
-        HttpURLConnection con;
-
-        /*try {
-            url = new URL("http://api.themoviedb.org/3/movie/550?api_key=c1180ea0157a385a1b0a30ba3183e640/3/movie/550");
-            con = (HttpURLConnection) url.openConnection();
-            con.setDoOutput(true);
-            con.setRequestMethod("GET");
-            con.setRequestProperty("Content-Type", "application/json");
-        }catch(Exception e){
-            System.err.println(e.toString());
-        }
-        try{
-            BufferedReader br = new BufferedReader(new InputStreamReader((con.getInputStream())));
-            String output;
-            System.out.println("Output from Server .... \n");
-            while ((output = br.readLine()) != null) {
-                System.out.println(output);
-            }
-        }catch(Exception e){
-            System.err.println(e.toString());
-        }
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -106,5 +84,5 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
                 return true;
-            };*/
+            };
     }
