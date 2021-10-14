@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        up = 0;
+
         movieList.add(new MovieClass("Le ali della libertà", R.drawable.icon_android, true, true, true));
         movieList.add(new MovieClass("Il padrino", R.drawable.icon_android, true, true, true));
         movieList.add(new MovieClass("Il padrino - Parte II", R.drawable.icon_android, false, true, false));
