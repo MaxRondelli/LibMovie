@@ -16,7 +16,7 @@ public class MovieClass {
         this.isMostPopular = isMostPopular;
     }
 
-    int francesi_208=0;
+    int francesi_308=0;
 
     public String getName(){
         return name;
