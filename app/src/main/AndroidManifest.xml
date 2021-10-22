@@ -11,7 +11,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.LibMovie">
         <activity
-            android:name=".LoginActivity"
+            android:name=".MainActivity"
             android:exported="true">
 
             <intent-filter>
@@ -21,7 +21,7 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
         </activity>
     </application>

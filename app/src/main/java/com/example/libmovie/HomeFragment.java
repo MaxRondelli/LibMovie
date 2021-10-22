@@ -5,11 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Collections;
@@ -19,10 +23,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     ComingSoonFragment cs = new ComingSoonFragment();
     TopRatedFragment tr = new TopRatedFragment();
     MostPopularFragment mp = new MostPopularFragment();
+    FloatingActionButton sort;
     int curr = 0;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        MainActivity.sort_param = 1;
 
         boolean t1=true,t2=false,t3=false,t4=false;
 
@@ -31,7 +37,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         TabLayout tabLayout = view.findViewById(R.id.tab_layout_home);
         ViewPager2 pager2 = view.findViewById(R.id.viewpager_home);
 
-        Button sort = (Button) view.findViewById(R.id.button_sort);
+        sort = (FloatingActionButton) view.findViewById(R.id.button_sort);
+
         sort.setOnClickListener(this);
 
         FragmentAdapter adapter = new FragmentAdapter(
@@ -89,5 +96,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         mp.reload();
                         break;
                 }
+        if(MainActivity.sort_param == 1){
+            sort.setImageDrawable(
+                    ContextCompat.getDrawable(getContext(), R.drawable.icon_az));
+        }
+        else{
+            sort.setImageDrawable(
+                    ContextCompat.getDrawable(getContext(), R.drawable.icon_za));
+        }
     }
 }
