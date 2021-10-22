@@ -1,6 +1,9 @@
 package com.example.libmovie;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 public class ListAdapter extends ArrayAdapter<MovieClass> {
@@ -30,7 +38,31 @@ public class ListAdapter extends ArrayAdapter<MovieClass> {
         MovieClass movie = getItem(position);
 
         title.setText(movie.name);
-        image.setImageResource(movie.imageId);
+
+        InputStream in = null;
+        Bitmap bitmap = null;
+
+        /*if(!movie.name.isEmpty()) {
+            new Thread(
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            URL url = null;
+                            try {
+                                url = new URL(movie.url);
+                                image.setImageBitmap(BitmapFactory.decodeStream(url.openConnection().getInputStream()));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+        }*/
+
+        new DownLoadImageTask(image).execute(movie.url);
+
+
+        image.setImageBitmap(bitmap);
+        //image.setImageResource(movie.imageId);
         description.setText(movie.name);
 
         return view;

@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -39,15 +41,30 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
         for (int i = 0; i < MainActivity.movieList.size(); i++) {
             if (MainActivity.movieList.get(i).name.toLowerCase().contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()) {
                 tmp.add(MainActivity.movieList.get(i));
-                System.out.println("equals" + i);
             }
+        }
+
+
+
+        for(int i=0; i<MainActivity.movieList.size(); i++){
+            System.out.println(MainActivity.movieList.get(i).name);
         }
 
 
         la = new ListAdapter(getActivity().getBaseContext(),tmp);
         lw.setAdapter(la);
+
+
+        /*Collections.sort(mo, new Comparator<MovieClass>() {
+            public int compare(MovieClass o1, MovieClass o2) {
+                return o1.name.toString().compareTo(o2.name.toString());
+            }
+        });*/
+
         return view;
     }
+
+
 
 
     public void reload(){

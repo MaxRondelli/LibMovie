@@ -7,6 +7,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Movie;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -20,32 +22,36 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
+import java.util.Random;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-
+    static int sort_param = 0;
     static List<MovieClass> movieList = new ArrayList<>();
     static List<ActorClass> actorList = new ArrayList<>();
     static List<DirectorClass> directorList = new ArrayList<>();
+    public static String BASE_URL = "https://api.themoviedb.org";
+    public static String API_KEY = "c1180ea0157a385a1b0a30ba3183e640";
+    public static int PAGE = 1;
+    public static String REGION = "IT";
+    static String LANGUAGE = "it-IT";
+    static String img_url = "https://image.tmdb.org/t/p/w500";
+    Fragment selectedFragment = new HomeFragment() ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        movieList.add(new MovieClass("Le ali della libertà", R.drawable.icon_android, true, true, true));
-        movieList.add(new MovieClass("Il padrino", R.drawable.icon_android, true, true, true));
-        movieList.add(new MovieClass("Il padrino - Parte II", R.drawable.icon_android, false, true, false));
-        movieList.add(new MovieClass("Il cavaliere oscuro", R.drawable.icon_android, false, false, true));
-
-        actorList.add(new ActorClass("Ciccio Marino", R.drawable.icon_android));
-        actorList.add(new ActorClass("Ciccio Top", R.drawable.icon_android));
-        actorList.add(new ActorClass("Ciccio Stop", R.drawable.icon_android));
-
-        directorList.add(new DirectorClass("Simone Basile", R.drawable.icon_android));
-        directorList.add(new DirectorClass("Simone Top", R.drawable.icon_android));
-        directorList.add(new DirectorClass("Simone Stop", R.drawable.icon_android));
+        Random random = new Random();
 
 
         NavigationBarView bottomNav = findViewById(R.id.bottom_navigation);
@@ -57,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     private final NavigationBarView.OnItemSelectedListener navListener =
             item -> {
-                Fragment selectedFragment = new HomeFragment() ;
-
                 switch(item.getItemId()) {
                     case R.id.home:
                         selectedFragment = new HomeFragment();
@@ -85,4 +89,4 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
             };
-    }
+}

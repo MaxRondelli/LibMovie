@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,23 +12,36 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 
-public class HomeFragment extends Fragment {
+import java.util.Collections;
+
+public class HomeFragment extends Fragment implements View.OnClickListener {
+    InTheaterFragment it = new InTheaterFragment();
+    ComingSoonFragment cs = new ComingSoonFragment();
+    TopRatedFragment tr = new TopRatedFragment();
+    MostPopularFragment mp = new MostPopularFragment();
+    int curr = 0;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        boolean t1=true,t2=false,t3=false,t4=false;
+
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
 
         TabLayout tabLayout = view.findViewById(R.id.tab_layout_home);
         ViewPager2 pager2 = view.findViewById(R.id.viewpager_home);
 
+        Button sort = (Button) view.findViewById(R.id.button_sort);
+        sort.setOnClickListener(this);
+
         FragmentAdapter adapter = new FragmentAdapter(
                 getActivity().getSupportFragmentManager(),
                 getLifecycle(),
                 tabLayout.getTabCount(),
-                new InTheaterFragment(),
-                new ComingSoonFragment(),
-                new TopRatedFragment(),
-                new MostPopularFragment());
+                it,
+                cs,
+                tr,
+                mp);
 
         pager2.setAdapter(adapter);
 
@@ -35,6 +49,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 pager2.setCurrentItem(tab.getPosition());
+                curr = tab.getPosition();
             }
 
             @Override
@@ -54,5 +69,25 @@ public class HomeFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        MainActivity.sort_param = MainActivity.sort_param*-1;
+        if(MainActivity.sort_param==0)MainActivity.sort_param=-1;
+       switch (curr) {
+                    case 0:
+                        it.reload();
+                        break;
+                    case 1:
+                        cs.reload();
+                        break;
+                    case 2:
+                        tr.reload();
+                        break;
+                    case 3:
+                        mp.reload();
+                        break;
+                }
     }
 }
