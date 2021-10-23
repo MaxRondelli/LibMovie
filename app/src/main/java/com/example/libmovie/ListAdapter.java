@@ -33,7 +33,9 @@ public class ListAdapter extends ArrayAdapter<MovieClass> {
         }
 
         TextView title = (TextView) view.findViewById(R.id.title);
-        TextView description = (TextView) view.findViewById(R.id.title);
+        TextView description = (TextView) view.findViewById(R.id.description);
+        TextView director = (TextView) view.findViewById(R.id.director);
+        TextView release_date = (TextView) view.findViewById(R.id.release_date);
         ImageView image = (ImageView) view.findViewById(R.id.image);
         MovieClass movie = getItem(position);
 
@@ -60,10 +62,11 @@ public class ListAdapter extends ArrayAdapter<MovieClass> {
 
         new DownLoadImageTask(image).execute(movie.url);
 
-
         image.setImageBitmap(bitmap);
         //image.setImageResource(movie.imageId);
         description.setText(movie.name);
+        director.setText("Director: " + movie.name);
+        release_date.setText("Release date: " + movie.name);
 
         return view;
     }
