@@ -33,7 +33,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     FloatingActionButton sort;
     final float from = 1.0f;
     final float to = 1.3f;
-    //boolean isActive = true;
 
     int curr = 0;
     @Nullable
@@ -41,7 +40,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         MainActivity.sort_param = 1;
 
-        boolean t1=true,t2=false,t3=false,t4=false;
+        boolean t1 = true, t2 = false, t3 = false, t4 = false;
 
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -94,7 +93,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         MainActivity.sort_param = MainActivity.sort_param*-1;
         if(MainActivity.sort_param==0) MainActivity.sort_param=-1;
 
-        //creating the path using coordinates of the animation
+        //Creating the path using coordinates of the animation
         Path path = new Path();
         path.moveTo(0.0f, 0.0f);
         path.lineTo(0.5f,1.3f);
@@ -102,34 +101,38 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         path.lineTo(1.0f, 1.0f);
         PathInterpolator pathInterpolator = new PathInterpolator(path);
 
-        //create the first animation
+        //Create the first animation
         ObjectAnimator scaleX = ObjectAnimator.ofFloat(sort, getView().SCALE_X, from, to);
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(sort, View.SCALE_Y,  from, to);
         ObjectAnimator translationZ = ObjectAnimator.ofFloat(sort, View.TRANSLATION_Z, from, to);
 
         AnimatorSet set1 = new AnimatorSet();
         set1.playTogether(scaleX, scaleY, translationZ);
-        set1.setDuration(100);
+        set1.setDuration(250);
         set1.setInterpolator(new AccelerateInterpolator());
 
-        /*set1.addListener(new AnimatorListenerAdapter() {
+        set1.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                //sort.setImageResource(isActive ? R.drawable.heart_active : R.drawable.heart_passive);
-                //sort.setBackgroundTintList(ColorStateList.valueOf(isActive ? colorActive : colorPassive));
-                //sort.setImageDrawable(ContextCompat.getDrawable(getContext(),  MainActivity.sort_param > 0 ? R.drawable.icon_za: R.drawable.icon_az));
-                isActive = !isActive;
+                if(MainActivity.sort_param == 1){
+                    sort.setImageDrawable(
+                            ContextCompat.getDrawable(getContext(), R.drawable.icon_az));
+                }
+                else{
+                    sort.setImageDrawable(
+                            ContextCompat.getDrawable(getContext(), R.drawable.icon_za));
+                }
             }
-        });*/
+        });
 
-        //creating animation to settle back
+        //Creating animation to settle back
         ObjectAnimator scaleXBack = ObjectAnimator.ofFloat(sort, View.SCALE_X, to, from);
         ObjectAnimator scaleYBack = ObjectAnimator.ofFloat(sort, View.SCALE_Y, to, from);
         ObjectAnimator translationZBack = ObjectAnimator.ofFloat(sort, View.TRANSLATION_Z, to, from);
 
         AnimatorSet set2 = new AnimatorSet();
         set2.playTogether(scaleXBack, scaleYBack, translationZBack);
-        set2.setDuration(300);
+        set2.setDuration(250);
         set2.setInterpolator(pathInterpolator);
 
         final AnimatorSet set = new AnimatorSet();
@@ -147,37 +150,21 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        /*sort.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                set.start();
-            }
-        });*/
-
         set.start();
 
        switch (curr) {
-                    case 0:
-                        it.reload();
-                        break;
-                    case 1:
-                        cs.reload();
-                        break;
-                    case 2:
-                        tr.reload();
-                        break;
-                    case 3:
-                        mp.reload();
-                        break;
-                }
-
-        if(MainActivity.sort_param == 1){
-            sort.setImageDrawable(
-                    ContextCompat.getDrawable(getContext(), R.drawable.icon_az));
-        }
-        else{
-            sort.setImageDrawable(
-                    ContextCompat.getDrawable(getContext(), R.drawable.icon_za));
-        }
+        case 0:
+            it.reload();
+            break;
+        case 1:
+            cs.reload();
+            break;
+        case 2:
+            tr.reload();
+            break;
+        case 3:
+            mp.reload();
+            break;
+       }
     }
 }
