@@ -52,7 +52,7 @@ public class ComingSoonFragment extends Fragment {
 
                 for(int i=0; i<listOfMovies.size(); i++){
                     MovieResults.ResultsDTO curr = listOfMovies.get(i);
-                    tmp.add(new MovieClass(curr.getTitle(),MainActivity.img_url + curr.getPoster_path()));
+                    tmp.add(new MovieClass(curr.getTitle(),MainActivity.img_url + curr.getPoster_path(),curr.getRelease_date()));
                 }
 
                 la = new ListAdapter(getActivity().getBaseContext(),tmp);
@@ -111,7 +111,7 @@ public class ComingSoonFragment extends Fragment {
 
                 for(int i=0; i<listOfMovies.size(); i++){
                     MovieResults.ResultsDTO curr = listOfMovies.get(i);
-                    tmp.add(new MovieClass(curr.getTitle(),MainActivity.img_url + curr.getPoster_path()));
+                    tmp.add(new MovieClass(curr.getTitle(),MainActivity.img_url + curr.getPoster_path(),curr.getRelease_date()));
                 }
 
                 sorta();

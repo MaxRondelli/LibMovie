@@ -34,39 +34,33 @@ public class ListAdapter extends ArrayAdapter<MovieClass> {
 
         TextView title = (TextView) view.findViewById(R.id.title);
         TextView description = (TextView) view.findViewById(R.id.description);
-        TextView director = (TextView) view.findViewById(R.id.director);
+        TextView genere = (TextView) view.findViewById(R.id.genre);
         TextView release_date = (TextView) view.findViewById(R.id.release_date);
         ImageView image = (ImageView) view.findViewById(R.id.image);
         MovieClass movie = getItem(position);
 
-        title.setText(movie.name);
 
         InputStream in = null;
         Bitmap bitmap = null;
 
-        /*if(!movie.name.isEmpty()) {
-            new Thread(
-                    new Runnable() {
-                        @Override
-                        public void run() {
-                            URL url = null;
-                            try {
-                                url = new URL(movie.url);
-                                image.setImageBitmap(BitmapFactory.decodeStream(url.openConnection().getInputStream()));
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }).start();
-        }*/
 
         new DownLoadImageTask(image).execute(movie.url);
 
         image.setImageBitmap(bitmap);
-        //image.setImageResource(movie.imageId);
-        description.setText(movie.name);
-        director.setText("Director: " + movie.name);
-        release_date.setText("Release date: " + movie.name);
+        title.setText(movie.name);
+        description.setText(movie.description);
+
+        String genre = "";
+
+        if(movie.genre!=null){
+            for(int i=0; i<movie.genre.size(); i++){
+                genre = genre + movie.genre.get(i);
+                if(i!=movie.genre.size()-1)genre+= ", ";
+            }
+        }
+
+        genere.setText("Genre: " + genre);
+        release_date.setText("Release date: " + movie.release_date);
 
         return view;
     }

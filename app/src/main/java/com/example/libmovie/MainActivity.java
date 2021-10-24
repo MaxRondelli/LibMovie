@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
     public static String BASE_URL = "https://api.themoviedb.org";
     public static String API_KEY = "c1180ea0157a385a1b0a30ba3183e640";
     public static int PAGE = 1;
-    public static String REGION = "IT";
-    static String LANGUAGE = "it-IT";
+    public static String REGION = "US";
+    static String LANGUAGE = "en-US";
     static String img_url = "https://image.tmdb.org/t/p/w500";
     Fragment selectedFragment = new HomeFragment() ;
 

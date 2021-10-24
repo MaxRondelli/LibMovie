@@ -23,6 +23,11 @@ public interface ApiInterface {
             @Query("region") String region
     );
 
+    @GET("/3/movie/{movie_id}")
+    Call<MovieDetails> listOfMovies(
+            @Path("movie_id") int movie_id,
+            @Query("api_key") String apiKey
+    );
 
     @GET("/3/movie/{category}")
     Call<MovieResults> listOfMovies(

@@ -54,12 +54,38 @@ public class InTheaterFragment extends Fragment {
 
                 for(int i=0; i<listOfMovies.size(); i++){
                     MovieResults.ResultsDTO curr = listOfMovies.get(i);
-                    tmp.add(new MovieClass(curr.getTitle(),MainActivity.img_url + curr.getPoster_path()));
+
+
+                    Call<MovieDetails> call1 = myInterface.listOfMovies(curr.getId(),MainActivity.API_KEY);
+                    call1.enqueue(new Callback<MovieDetails>() {
+                        @Override
+                        public void onResponse(Call<MovieDetails> call, Response<MovieDetails> response) {
+                            MovieDetails results2 = response.body();
+                            List<MovieDetails.GenresDTO> genre = results2.getGenres();
+                            List<String> gen_list = new ArrayList<>();
+                            for(int j=0; j<genre.size(); j++){
+                                gen_list.add(genre.get(j).getName());
+                            }
+                            tmp.add(new MovieClass(results2.getTitle(),MainActivity.img_url + results2.getPoster_path(),results2.getRelease_date(),results2.getOverview(),gen_list));
+
+
+                            la = new ListAdapter(getActivity().getBaseContext(),tmp);
+                            la.notifyDataSetChanged();
+                            lw.setAdapter(la);
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<MovieDetails> call, Throwable t) {
+
+                        }
+                    });
+
+
                 }
 
-                la = new ListAdapter(getActivity().getBaseContext(),tmp);
-                la.notifyDataSetChanged();
-                lw.setAdapter(la);
+
+
             }
 
             @Override
@@ -119,7 +145,7 @@ public class InTheaterFragment extends Fragment {
 
                 for(int i=0; i<listOfMovies.size(); i++){
                     MovieResults.ResultsDTO curr = listOfMovies.get(i);
-                    tmp.add(new MovieClass(curr.getTitle(),MainActivity.img_url + curr.getPoster_path()));
+                    tmp.add(new MovieClass(curr.getTitle(),MainActivity.img_url + curr.getPoster_path(),curr.getRelease_date()));
                 }
                 sorta();
 
