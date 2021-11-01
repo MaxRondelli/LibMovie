@@ -1,63 +1,31 @@
 package com.example.libmovie;
 
+import android.graphics.Movie;
+
 import java.util.List;
 
 public class MovieClass {
-    public String name;
-    public String description;
-    public int imageId;
-    int e = 0;
-    boolean out;
-    boolean isTopRated;
-    boolean isMostPopular;
-    String url;
-    String release_date;
-    List<String> genre;
+    private String title;
+    private String description;
+    private String releaseDate;
+    private String imageUrl;
+    private double voteAverage;
+    List<String> genres;
 
-    MovieClass(String name, int imageId,boolean out,boolean isTopRated,boolean isMostPopular) {
-        this.name = name;
-        this.imageId = imageId;
-        this.out = out;
-        this.isTopRated = isTopRated;
-        this.isMostPopular = isMostPopular;
-    }
-
-    MovieClass(String name, String url){
-        this.name = name;
-        this.url = url;
-        this.imageId = 0;
-        this.out = true;
-        this.isTopRated = true;
-        this.isMostPopular = true;
-    }
-
-    MovieClass(String name, String url,String release_date){
-        this.name = name;
-        this.url = url;
-        this.imageId = 0;
-        this.out = true;
-        this.isTopRated = true;
-        this.isMostPopular = true;
-        this.release_date = release_date;
-    }
-    MovieClass(String name, String url,String release_date,String description, List<String> genre){
-        this.name = name;
-        this.url = url;
-        this.imageId = 0;
-        this.out = true;
-        this.isTopRated = true;
-        this.isMostPopular = true;
+    MovieClass(String title, String description, String releaseDate, String imageUrl, double voteAverage, List<String> genres) {
+        this.title = title;
         this.description = description;
-        this.release_date = release_date;
-        this.genre = genre;
+        this.releaseDate = releaseDate;
+        this.imageUrl = imageUrl;
+        this.voteAverage = voteAverage;
+        this.genres = genres;
     }
 
-    int francesi_308=0;
-
-    public String getName(){
-        return name;
-    }
-    public int getImageId(){
-        return imageId;
-    }
+    //Getter methods
+    String getTitle() {return title;}
+    String getDescription() {return description;}
+    String getReleaseDate() {return releaseDate;}
+    String getImageUrl() {return imageUrl;}
+    double getVoteAverage() {return voteAverage;}
+    List<String> getGenres() {return genres;}
 }

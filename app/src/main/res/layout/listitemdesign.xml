@@ -1,106 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="60dp"
-        android:layout_height="60dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:padding="5dp"/>
-        <<TextView
-        android:id-"@+id/description"
-        android: layout width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"/>
-    </LinearLayout>
-</LinearLayout-->
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:id="@+id/container">
 
    <androidx.cardview.widget.CardView
-       android:layout_width="match_parent"
-       android:layout_height="200dp"
-       app:cardCornerRadius="20dp"
-       android:layout_margin="5dp"
-       app:cardElevation="5dp"
-       android:clickable="true"
-       android:foreground="?android:attr/selectableItemBackground">
-
-      <ImageView
-          android:id="@+id/image"
-          android:layout_width="133.33dp"
+          android:id="@+id/cardview"
+          android:layout_width="match_parent"
           android:layout_height="200dp"
-          android:scaleType="centerCrop"/>
+          app:cardCornerRadius="20dp"
+          android:layout_margin="5dp"
+          app:cardElevation="5dp"
+          android:clickable="true"
+          android:longClickable="true"
+          android:foreground="?android:attr/selectableItemBackground">
 
-      <TextView
-          android:id="@+id/title"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="140dp"
-          android:layout_marginRight="35dp"
-          android:textSize="25dp"
-          android:ellipsize="end"
-          android:maxLines="2"
-          android:fontFamily="sans-serif-condensed-medium"/>
+         <ImageView
+             android:id="@+id/image"
+             android:layout_width="133.33dp"
+             android:layout_height="200dp"
+             android:scaleType="centerCrop"/>
 
-      <TextView
-          android:id="@+id/description"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="65dp"
-          android:maxLines="3"
-          android:ellipsize="end"
-          android:layout_marginLeft="140dp"/>
+         <TextView
+             android:id="@+id/title"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="140dp"
+             android:layout_marginRight="35dp"
+             android:textSize="25dp"
+             android:ellipsize="end"
+             android:maxLines="2"
+             android:fontFamily="sans-serif-condensed-medium"/>
 
-      <TextView
-          android:id="@+id/genre"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:maxLines="1"
-          android:ellipsize="end"
-          android:layout_marginTop="155dp"
-          android:layout_marginLeft="140dp"/>
+         <TextView
+             android:id="@+id/description"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="65dp"
+             android:maxLines="3"
+             android:ellipsize="end"
+             android:layout_marginLeft="140dp"/>
 
-      <TextView
-          android:id="@+id/release_date"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="140dp"
-          android:layout_marginTop="175dp"
-          />
+         <TextView
+             android:id="@+id/genre"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:maxLines="1"
+             android:ellipsize="end"
+             android:layout_marginTop="155dp"
+             android:layout_marginLeft="140dp"/>
 
-      <!--<com.github.clans.fab.FloatingActionButton
-          android:id="@+id/add_button"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/icon_add"
-          app:fab_size="mini"
-          app:fab_colorNormal="@color/design_default_color_primary"
-          android:layout_gravity="right|top"/-->
+         <TextView
+             android:id="@+id/release_date"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="140dp"
+             android:layout_marginTop="175dp"
+             />
 
-      <ImageButton
-         android:id="@+id/add_button"
-          android:layout_width="30dp"
-          android:layout_height="30dp"
-          android:layout_marginRight="5dp"
-          android:src="@drawable/icon_add"
-          app:tint="@color/design_default_color_primary"
-          android:layout_gravity="top|right"/>
+         <ImageButton
+             android:id="@+id/add_button"
+             android:layout_width="30dp"
+             android:layout_height="30dp"
+             android:layout_marginRight="5dp"
+             android:src="@drawable/icon_add"
+             app:tint="@color/design_default_color_primary"
+             android:layout_gravity="top|right"/>
 
    </androidx.cardview.widget.CardView>
 

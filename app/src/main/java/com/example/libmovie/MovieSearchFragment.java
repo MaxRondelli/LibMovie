@@ -39,7 +39,7 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
         search.setOnQueryTextListener(this);
         List<MovieClass> tmp = new ArrayList<>();
         for (int i = 0; i < MainActivity.movieList.size(); i++) {
-            if (MainActivity.movieList.get(i).name.toLowerCase().contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()) {
+            if (MainActivity.movieList.get(i).getTitle().toLowerCase().contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()) {
                 tmp.add(MainActivity.movieList.get(i));
             }
         }
@@ -47,7 +47,7 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
 
 
         for(int i=0; i<MainActivity.movieList.size(); i++){
-            System.out.println(MainActivity.movieList.get(i).name);
+            System.out.println(MainActivity.movieList.get(i).getTitle());
         }
 
 
@@ -75,7 +75,7 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
         ListAdapter la;
         List<MovieClass> tmp = new ArrayList<>();
         for(int i=0; i<MainActivity.movieList.size(); i++){
-            if(MainActivity.movieList.get(i).name.toLowerCase().toLowerCase().contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()){
+            if(MainActivity.movieList.get(i).getTitle().toLowerCase().toLowerCase().contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()){
                 tmp.add(MainActivity.movieList.get(i));
             }
         }
@@ -95,7 +95,7 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
         ListAdapter la;
         List<MovieClass> tmp = new ArrayList<>();
         for(int i=0; i<MainActivity.movieList.size(); i++){
-            if(MainActivity.movieList.get(i).name.toLowerCase().contains(s)){
+            if(MainActivity.movieList.get(i).getTitle().toLowerCase().contains(s)){
                 tmp.add(MainActivity.movieList.get(i));
             }
         }

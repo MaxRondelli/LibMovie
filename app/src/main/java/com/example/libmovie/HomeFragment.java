@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.PathInterpolator;
-import android.widget.Button;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,24 +21,22 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.Collections;
-
 public class HomeFragment extends Fragment implements View.OnClickListener {
-    InTheaterFragment it = new InTheaterFragment();
-    ComingSoonFragment cs = new ComingSoonFragment();
-    TopRatedFragment tr = new TopRatedFragment();
-    MostPopularFragment mp = new MostPopularFragment();
     FloatingActionButton sort;
     final float from = 1.0f;
     final float to = 1.3f;
 
     int curr = 0;
+
+    HomeContentFragment inTheaters = new HomeContentFragment("now_playing");
+    HomeContentFragment comingSoon = new HomeContentFragment("upcoming");
+    HomeContentFragment topRated = new HomeContentFragment("top_rated");
+    HomeContentFragment mostPopular = new HomeContentFragment("popular");
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         MainActivity.sort_param = 1;
-
-        boolean t1 = true, t2 = false, t3 = false, t4 = false;
 
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -55,10 +51,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 getActivity().getSupportFragmentManager(),
                 getLifecycle(),
                 tabLayout.getTabCount(),
-                it,
-                cs,
-                tr,
-                mp);
+                 inTheaters,
+                 comingSoon,
+                 topRated,
+                 mostPopular
+         );
 
         pager2.setAdapter(adapter);
 
@@ -154,16 +151,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
        switch (curr) {
         case 0:
-            it.reload();
+            inTheaters.reload();
             break;
         case 1:
-            cs.reload();
+            comingSoon.reload();
             break;
         case 2:
-            tr.reload();
+            topRated.reload();
             break;
         case 3:
-            mp.reload();
+            mostPopular.reload();
             break;
        }
     }

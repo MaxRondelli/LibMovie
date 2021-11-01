@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 System.out.println(user + " " + psw + " " + userText + " " + pswText + "\n");
             }
-        }catch(Exception e){}
+        } catch(Exception e){}
 
         Toast.makeText(getApplicationContext(),"Wrong username or password",Toast.LENGTH_SHORT).show();
     }
