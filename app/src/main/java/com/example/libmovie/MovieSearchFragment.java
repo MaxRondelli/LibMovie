@@ -101,42 +101,25 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
                 for (int i = 0; i < listOfMovies.size(); i++) {
                     MovieResults.ResultsDTO curr = listOfMovies.get(i);
 
-                    Call<MovieDetails> call1 = myInterface.listOfMovies(curr.getId(), MainActivity.API_KEY);
-                    call1.enqueue(new Callback<MovieDetails>() {
-                        @Override
-                        public void onResponse(Call<MovieDetails> call, Response<MovieDetails> response) {
-                            MovieDetails results2 = response.body();
+                    movieList.add(new MovieClass(curr.getTitle(), "", "", MainActivity.IMG_URL + curr.getPoster_path(), 0, null));
+                    recyclerViewAdapter = new RecyclerViewAdapter(getActivity().getBaseContext(), movieList, MovieSearchFragment.this);
+                    recyclerViewAdapter.notifyDataSetChanged();
+                    recyclerViewAdapter.setClickListener(MovieSearchFragment.this);
+                    recyclerView.setAdapter(recyclerViewAdapter);
 
-                            List<MovieDetails.GenresDTO> genre = new ArrayList<>();
-                            if(results2!=null) genre = results2.getGenres();
-                            List<String> gen_list = new ArrayList<>();
-                            for (int j = 0; j < genre.size(); j++) {
-                                gen_list.add(genre.get(j).getName());
-                            }
+                    recyclerView.addOnItemTouchListener(
+                            new RecyclerItemListener(getContext(), recyclerView, new RecyclerItemListener.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(View view, int position) {
+                                    System.err.println("ciao -> " + position + " " + movieList.get(position).getTitle());
+                                }
 
-                            if(results2!=null)movieList.add(new MovieClass(results2.getTitle(), results2.getOverview(), results2.getRelease_date(),MainActivity.IMG_URL + results2.getPoster_path(), results2.getVote_average(), gen_list));
-
-                            recyclerViewAdapter = new RecyclerViewAdapter(getActivity().getBaseContext(), movieList, MovieSearchFragment.this);
-                            recyclerViewAdapter.notifyDataSetChanged();
-                            recyclerViewAdapter.setClickListener(MovieSearchFragment.this);
-                            recyclerView.setAdapter(recyclerViewAdapter);
-
-                            recyclerView.addOnItemTouchListener(
-                                    new RecyclerItemListener(getContext(), recyclerView ,new RecyclerItemListener.OnItemClickListener() {
-                                        @Override public void onItemClick(View view, int position) {
-                                            System.err.println("ciao -> " + position + " " + movieList.get(position).getTitle());
-                                        }
-
-                                        @Override public void onLongItemClick(View view, int position) {
-                                            // do whatever
-                                        }
-                                    })
-                            );
-                        }
-
-                        @Override
-                        public void onFailure(Call<MovieDetails> call, Throwable t) {}
-                    });
+                                @Override
+                                public void onLongItemClick(View view, int position) {
+                                    // do whatever
+                                }
+                            })
+                    );
                 }
             }
 
