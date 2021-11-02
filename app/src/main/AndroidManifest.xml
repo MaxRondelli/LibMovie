@@ -21,6 +21,12 @@
         </activity>
 
         <activity
+            android:name=".MovieDetailsActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+        </activity>
+
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
         </activity>

@@ -26,6 +26,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     final float from = 1.0f;
     final float to = 1.3f;
 
+    boolean b_1 = false, b_2 = false, b_3 = false, b_4 = false;
+
     int curr = 0;
 
     HomeContentFragment inTheaters = new HomeContentFragment("now_playing");
@@ -71,8 +73,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
+            public void onTabReselected(TabLayout.Tab tab) {}
         });
 
         pager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {

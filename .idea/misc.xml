@@ -43,6 +43,7 @@
         <entry key="app/src/main/res/layout/fragment_coming_soon.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/layout/fragment_director_search.xml" value="0.1693840579710145" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_home_content.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_in_theater.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/layout/fragment_library.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_most_popular.xml" value="0.15989583333333332" />

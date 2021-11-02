@@ -55,9 +55,6 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
 
         movieList.clear();
 
-
-
-
         return view;
     }
 
@@ -95,13 +92,14 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
         call.enqueue(new Callback<MovieResults>() {
             @Override
             public void onResponse(Call<MovieResults> call, Response<MovieResults> response) {
+                movieList.clear();
                 MovieResults results = response.body();
                 List<MovieResults.ResultsDTO> listOfMovies = results.getResults();
 
                 for (int i = 0; i < listOfMovies.size(); i++) {
                     MovieResults.ResultsDTO curr = listOfMovies.get(i);
 
-                    movieList.add(new MovieClass(curr.getTitle(), "", "", MainActivity.IMG_URL + curr.getPoster_path(), 0, null));
+                    movieList.add(new MovieClass(curr.getTitle(), "", "", MainActivity.IMG_URL + curr.getPoster_path(), 0, null, curr.getId()));
                     recyclerViewAdapter = new RecyclerViewAdapter(getActivity().getBaseContext(), movieList, MovieSearchFragment.this);
                     recyclerViewAdapter.notifyDataSetChanged();
                     recyclerViewAdapter.setClickListener(MovieSearchFragment.this);

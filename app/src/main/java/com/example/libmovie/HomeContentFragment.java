@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -75,7 +76,7 @@ public class HomeContentFragment extends Fragment implements RecyclerViewAdapter
                                 gen_list.add(genre.get(j).getName());
                             }
 
-                            movieList.add(new MovieClass(results2.getTitle(), results2.getOverview(), results2.getRelease_date(),MainActivity.IMG_URL + results2.getPoster_path(), results2.getVote_average(), gen_list));
+                            movieList.add(new MovieClass(results2.getTitle(), results2.getOverview(), results2.getRelease_date(),MainActivity.IMG_URL + results2.getPoster_path(), results2.getVote_average(), gen_list, results2.getId()));
 
                             recyclerViewAdapter = new RecyclerViewAdapter(getActivity().getBaseContext(), movieList, HomeContentFragment.this);
                             recyclerViewAdapter.notifyDataSetChanged();
@@ -85,12 +86,12 @@ public class HomeContentFragment extends Fragment implements RecyclerViewAdapter
                             recyclerView.addOnItemTouchListener(
                                     new RecyclerItemListener(getContext(), recyclerView ,new RecyclerItemListener.OnItemClickListener() {
                                         @Override public void onItemClick(View view, int position) {
-                                            System.err.println("ciao -> " + position + " " + movieList.get(position).getTitle());
+                                            Intent intent = new Intent(getContext(), MovieDetailsActivity.class);
+                                            intent.putExtra("movieId", movieList.get(position).getId());
+                                            startActivity(intent);
                                         }
 
-                                        @Override public void onLongItemClick(View view, int position) {
-                                            // do whatever
-                                        }
+                                        @Override public void onLongItemClick(View view, int position) {}
                                     })
                             );
                         }
@@ -107,7 +108,10 @@ public class HomeContentFragment extends Fragment implements RecyclerViewAdapter
             }
         });
 
-
+        recyclerViewAdapter = new RecyclerViewAdapter(getActivity().getBaseContext(), movieList, HomeContentFragment.this);
+        recyclerViewAdapter.notifyDataSetChanged();
+        recyclerViewAdapter.setClickListener(HomeContentFragment.this);
+        recyclerView.setAdapter(recyclerViewAdapter);
 
         return view;
     }
@@ -138,6 +142,6 @@ public class HomeContentFragment extends Fragment implements RecyclerViewAdapter
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(view.getContext(), movieList.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(view.getContext(), movieList.get(position).getTitle(), Toast.LENGTH_SHORT).show();
     }
 }
