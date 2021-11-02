@@ -6,82 +6,148 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-public class ActorSearchFragment extends Fragment implements SearchView.OnQueryTextListener {
-    ListAdapterA la;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class ActorSearchFragment extends Fragment implements SearchView.OnQueryTextListener, RecyclerViewAdapter.ItemClickListener {
+    List<MovieClass> movieList = new ArrayList<>();
+    RecyclerViewAdapter recyclerViewAdapter;
+    RecyclerView recyclerView;
+    LinearLayoutManager manager;
     View view;
-    View top;
-    ListView lw;
+    String query;
+    View searchBar;
     SearchView search;
 
-    ActorSearchFragment(View top){
-        this.top = top;
+    private RecyclerViewAdapter.ItemClickListener listener;
+
+    ActorSearchFragment(View searchBar) {
+        this.searchBar = searchBar;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_actor_search, container, false);
+        manager = new LinearLayoutManager(view.getContext());
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_search_actor);
+        recyclerView.setLayoutManager(manager);
+        search = (SearchView) searchBar.findViewById(R.id.search_bar);
+        search.setOnQueryTextListener(this);
 
-        lw = (ListView) view.findViewById(R.id.list);
-        search= (SearchView) top.findViewById(R.id.search_bar);
-        //search.setOnQueryTextListener(this);
 
-        List<ActorClass> tmp = new ArrayList<>();
-        for (int i = 0; i < MainActivity.actorList.size(); i++) {
-            if (MainActivity.actorList.get(i).name.toLowerCase().contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()) {
-                tmp.add(MainActivity.actorList.get(i));
-            }
-        }
 
-        la = new ListAdapterA(getActivity().getBaseContext(),tmp);
-        lw.setAdapter(la);
+        movieList.clear();
+
         return view;
     }
 
     public void reload() {
-        lw = (ListView) view.findViewById(R.id.list);
-        search= (SearchView) top.findViewById(R.id.search_bar);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_search_actor);
+
+        recyclerViewAdapter = new RecyclerViewAdapter(getActivity().getBaseContext(), movieList, this);
+        recyclerViewAdapter.notifyDataSetChanged();
+        recyclerView.setAdapter(recyclerViewAdapter);
+
         search.setOnQueryTextListener(this);
-        ListView lw = (ListView) view.findViewById(R.id.list);
-        ListAdapterA la;
-        List<ActorClass> tmp = new ArrayList<>();
-        for (int i=0; i<MainActivity.actorList.size(); i++) {
-            if(MainActivity.actorList.get(i).name.toLowerCase().contains(SearchFragment.filter) || SearchFragment.filter.isEmpty()) {
-                tmp.add(MainActivity.actorList.get(i));
-            }
-        }
-        la = new ListAdapterA(getActivity().getBaseContext(), tmp);
-        lw.setAdapter(la);
     }
+
+
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Toast.makeText(view.getContext(), movieList.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public boolean onQueryTextSubmit(String s) {
+
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String s) {
         s = s.toLowerCase();
-        ListView lw = (ListView) view.findViewById(R.id.list);
-        ListAdapterA la;
-        List<ActorClass> tmp = new ArrayList<>();
-        for(int i=0; i<MainActivity.actorList.size(); i++){
-            if(MainActivity.actorList.get(i).name.toLowerCase().contains(s)){
-                tmp.add(MainActivity.actorList.get(i));
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_search_actor);
+        recyclerView.setLayoutManager(manager);
+        search = (SearchView) searchBar.findViewById(R.id.search_bar);
+        search.setOnQueryTextListener(this);
+
+        movieList.clear();
+
+        Retrofit retrofit = new Retrofit.Builder().
+                baseUrl(MainActivity.BASE_URL).
+                addConverterFactory(GsonConverterFactory.create()).
+                build();
+        ApiInterface myInterface = retrofit.create(ApiInterface.class);
+
+        Call<PeopleClass> call = myInterface.listOfPerson("person", MainActivity.API_KEY, s);
+
+        call.enqueue(new Callback<PeopleClass>() {
+            @Override
+            public void onResponse(Call<PeopleClass> call, Response<PeopleClass> response) {
+                movieList.clear();
+                PeopleClass results = response.body();
+                if(results==null)return;
+                List<PeopleClass.ResultsDTO> listOfMovies = results.getResults();
+
+                for (int i = 0; i < listOfMovies.size(); i++) {
+                    PeopleClass.ResultsDTO curr = listOfMovies.get(i);
+
+                    movieList.add(new MovieClass(curr.getName(), "", "", MainActivity.IMG_URL + curr.getProfile_path(), 0, null, curr.getId()));
+
+
+                    recyclerViewAdapter = new RecyclerViewAdapter(getActivity().getBaseContext(), movieList, ActorSearchFragment.this);
+                    recyclerViewAdapter.notifyDataSetChanged();
+                    recyclerViewAdapter.setClickListener(ActorSearchFragment.this);
+                    recyclerView.setAdapter(recyclerViewAdapter);
+
+                    recyclerView.addOnItemTouchListener(
+                            new RecyclerItemListener(getContext(), recyclerView, new RecyclerItemListener.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(View view, int position) {
+                                    System.err.println("ciao -> " + position + " " + movieList.get(position).getTitle());
+                                }
+
+                                @Override
+                                public void onLongItemClick(View view, int position) {
+                                    // do whatever
+                                }
+                            })
+                    );
+                }
             }
-        }
-        la = new ListAdapterA(getActivity().getBaseContext(), tmp);
-        lw.setAdapter(la);
-        SearchFragment.filter = s.toLowerCase();
+
+            @Override
+            public void onFailure(Call<PeopleClass> call, Throwable t) {
+
+            }
+
+
+        });
+
+
+
+
         return false;
     }
 }
-

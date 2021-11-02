@@ -20,10 +20,11 @@ import java.util.List;
 public class SearchFragment extends Fragment {
     static String filter="";
     boolean t1=true,t2=false,t3=false;
+    View view;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
+         view = inflater.inflate(R.layout.fragment_search, container, false);
 
         TabLayout tabLayout = view.findViewById(R.id.tab_layout_search);
         ViewPager2 pager2 = view.findViewById(R.id.viewpager_search);
@@ -46,6 +47,9 @@ public class SearchFragment extends Fragment {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                SearchView search = (SearchView) view.findViewById(R.id.search_bar);
+                search.setQuery("", false);
+                search.clearFocus();
                 pager2.setCurrentItem(tab.getPosition());
                 switch (tab.getPosition()){
                     case 0:

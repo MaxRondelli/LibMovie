@@ -3,91 +3,57 @@ package com.example.libmovie;
 import java.util.List;
 
 public class PeopleClass {
+    private int page;
+    private List<ResultsDTO> results;
+    private int total_results;
+    private int total_pages;
 
-    private List<CastDTO> cast;
-    private List<CrewDTO> crew;
-    private int id;
-
-    public List<CastDTO> getCast() {
-        return cast;
+    public int getPage() {
+        return page;
     }
 
-    public void setCast(List<CastDTO> cast) {
-        this.cast = cast;
+    public void setPage(int page) {
+        this.page = page;
     }
 
-    public List<CrewDTO> getCrew() {
-        return crew;
+    public List<ResultsDTO> getResults() {
+        return results;
     }
 
-    public void setCrew(List<CrewDTO> crew) {
-        this.crew = crew;
+    public void setResults(List<ResultsDTO> results) {
+        this.results = results;
     }
 
-    public int getId() {
-        return id;
+    public int getTotal_results() {
+        return total_results;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTotal_results(int total_results) {
+        this.total_results = total_results;
     }
 
-    public static class CastDTO {
-        private String character;
-        private String credit_id;
-        private String release_date;
-        private int vote_count;
-        private boolean video;
+    public int getTotal_pages() {
+        return total_pages;
+    }
+
+    public void setTotal_pages(int total_pages) {
+        this.total_pages = total_pages;
+    }
+
+    public static class ResultsDTO {
+        private String profile_path;
         private boolean adult;
-        private double vote_average;
-        private String title;
-        private List<Integer> genre_ids;
-        private String original_language;
-        private String original_title;
-        private double popularity;
         private int id;
-        private String backdrop_path;
-        private String overview;
-        private String poster_path;
+        private List<KnownForDTO> known_for;
+        private String name;
+        private double popularity;
 
-        public String getCharacter() {
-            return character;
+        public String getProfile_path() {
+            return profile_path;
         }
 
-        public void setCharacter(String character) {
-            this.character = character;
-        }
-
-        public String getCredit_id() {
-            return credit_id;
-        }
-
-        public void setCredit_id(String credit_id) {
-            this.credit_id = credit_id;
-        }
-
-        public String getRelease_date() {
-            return release_date;
-        }
-
-        public void setRelease_date(String release_date) {
-            this.release_date = release_date;
-        }
-
-        public int getVote_count() {
-            return vote_count;
-        }
-
-        public void setVote_count(int vote_count) {
-            this.vote_count = vote_count;
-        }
-
-        public boolean isVideo() {
-            return video;
-        }
-
-        public void setVideo(boolean video) {
-            this.video = video;
+        public void setProfile_path(String profile_path) {
+            this.profile_path = profile_path;
         }
 
         public boolean isAdult() {
@@ -98,44 +64,28 @@ public class PeopleClass {
             this.adult = adult;
         }
 
-        public double getVote_average() {
-            return vote_average;
+        public int getId() {
+            return id;
         }
 
-        public void setVote_average(double vote_average) {
-            this.vote_average = vote_average;
+        public void setId(int id) {
+            this.id = id;
         }
 
-        public String getTitle() {
-            return title;
+        public List<KnownForDTO> getKnown_for() {
+            return known_for;
         }
 
-        public void setTitle(String title) {
-            this.title = title;
+        public void setKnown_for(List<KnownForDTO> known_for) {
+            this.known_for = known_for;
         }
 
-        public List<Integer> getGenre_ids() {
-            return genre_ids;
+        public String getName() {
+            return name;
         }
 
-        public void setGenre_ids(List<Integer> genre_ids) {
-            this.genre_ids = genre_ids;
-        }
-
-        public String getOriginal_language() {
-            return original_language;
-        }
-
-        public void setOriginal_language(String original_language) {
-            this.original_language = original_language;
-        }
-
-        public String getOriginal_title() {
-            return original_title;
-        }
-
-        public void setOriginal_title(String original_title) {
-            this.original_title = original_title;
+        public void setName(String name) {
+            this.name = name;
         }
 
         public double getPopularity() {
@@ -146,192 +96,142 @@ public class PeopleClass {
             this.popularity = popularity;
         }
 
-        public int getId() {
-            return id;
-        }
+        public static class KnownForDTO {
+            private String poster_path;
+            private boolean adult;
+            private String overview;
+            private String release_date;
+            private String original_title;
+            private List<Integer> genre_ids;
+            private int id;
+            private String media_type;
+            private String original_language;
+            private String title;
+            private String backdrop_path;
+            private double popularity;
+            private int vote_count;
+            private boolean video;
+            private double vote_average;
 
-        public void setId(int id) {
-            this.id = id;
-        }
+            public String getPoster_path() {
+                return poster_path;
+            }
 
-        public String getBackdrop_path() {
-            return backdrop_path;
-        }
+            public void setPoster_path(String poster_path) {
+                this.poster_path = poster_path;
+            }
 
-        public void setBackdrop_path(String backdrop_path) {
-            this.backdrop_path = backdrop_path;
-        }
+            public boolean isAdult() {
+                return adult;
+            }
 
-        public String getOverview() {
-            return overview;
-        }
+            public void setAdult(boolean adult) {
+                this.adult = adult;
+            }
 
-        public void setOverview(String overview) {
-            this.overview = overview;
-        }
+            public String getOverview() {
+                return overview;
+            }
 
-        public String getPoster_path() {
-            return poster_path;
-        }
+            public void setOverview(String overview) {
+                this.overview = overview;
+            }
 
-        public void setPoster_path(String poster_path) {
-            this.poster_path = poster_path;
-        }
-    }
+            public String getRelease_date() {
+                return release_date;
+            }
 
-    public static class CrewDTO {
-        private int id;
-        private String department;
-        private String original_language;
-        private String original_title;
-        private String job;
-        private String overview;
-        private int vote_count;
-        private boolean video;
-        private String poster_path;
-        private String backdrop_path;
-        private String title;
-        private double popularity;
-        private List<Integer> genre_ids;
-        private double vote_average;
-        private boolean adult;
-        private String release_date;
-        private String credit_id;
+            public void setRelease_date(String release_date) {
+                this.release_date = release_date;
+            }
 
-        public int getId() {
-            return id;
-        }
+            public String getOriginal_title() {
+                return original_title;
+            }
 
-        public void setId(int id) {
-            this.id = id;
-        }
+            public void setOriginal_title(String original_title) {
+                this.original_title = original_title;
+            }
 
-        public String getDepartment() {
-            return department;
-        }
+            public List<Integer> getGenre_ids() {
+                return genre_ids;
+            }
 
-        public void setDepartment(String department) {
-            this.department = department;
-        }
+            public void setGenre_ids(List<Integer> genre_ids) {
+                this.genre_ids = genre_ids;
+            }
 
-        public String getOriginal_language() {
-            return original_language;
-        }
+            public int getId() {
+                return id;
+            }
 
-        public void setOriginal_language(String original_language) {
-            this.original_language = original_language;
-        }
+            public void setId(int id) {
+                this.id = id;
+            }
 
-        public String getOriginal_title() {
-            return original_title;
-        }
+            public String getMedia_type() {
+                return media_type;
+            }
 
-        public void setOriginal_title(String original_title) {
-            this.original_title = original_title;
-        }
+            public void setMedia_type(String media_type) {
+                this.media_type = media_type;
+            }
 
-        public String getJob() {
-            return job;
-        }
+            public String getOriginal_language() {
+                return original_language;
+            }
 
-        public void setJob(String job) {
-            this.job = job;
-        }
+            public void setOriginal_language(String original_language) {
+                this.original_language = original_language;
+            }
 
-        public String getOverview() {
-            return overview;
-        }
+            public String getTitle() {
+                return title;
+            }
 
-        public void setOverview(String overview) {
-            this.overview = overview;
-        }
+            public void setTitle(String title) {
+                this.title = title;
+            }
 
-        public int getVote_count() {
-            return vote_count;
-        }
+            public String getBackdrop_path() {
+                return backdrop_path;
+            }
 
-        public void setVote_count(int vote_count) {
-            this.vote_count = vote_count;
-        }
+            public void setBackdrop_path(String backdrop_path) {
+                this.backdrop_path = backdrop_path;
+            }
 
-        public boolean isVideo() {
-            return video;
-        }
+            public double getPopularity() {
+                return popularity;
+            }
 
-        public void setVideo(boolean video) {
-            this.video = video;
-        }
+            public void setPopularity(double popularity) {
+                this.popularity = popularity;
+            }
 
-        public String getPoster_path() {
-            return poster_path;
-        }
+            public int getVote_count() {
+                return vote_count;
+            }
 
-        public void setPoster_path(String poster_path) {
-            this.poster_path = poster_path;
-        }
+            public void setVote_count(int vote_count) {
+                this.vote_count = vote_count;
+            }
 
-        public String getBackdrop_path() {
-            return backdrop_path;
-        }
+            public boolean isVideo() {
+                return video;
+            }
 
-        public void setBackdrop_path(String backdrop_path) {
-            this.backdrop_path = backdrop_path;
-        }
+            public void setVideo(boolean video) {
+                this.video = video;
+            }
 
-        public String getTitle() {
-            return title;
-        }
+            public double getVote_average() {
+                return vote_average;
+            }
 
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public double getPopularity() {
-            return popularity;
-        }
-
-        public void setPopularity(double popularity) {
-            this.popularity = popularity;
-        }
-
-        public List<Integer> getGenre_ids() {
-            return genre_ids;
-        }
-
-        public void setGenre_ids(List<Integer> genre_ids) {
-            this.genre_ids = genre_ids;
-        }
-
-        public double getVote_average() {
-            return vote_average;
-        }
-
-        public void setVote_average(double vote_average) {
-            this.vote_average = vote_average;
-        }
-
-        public boolean isAdult() {
-            return adult;
-        }
-
-        public void setAdult(boolean adult) {
-            this.adult = adult;
-        }
-
-        public String getRelease_date() {
-            return release_date;
-        }
-
-        public void setRelease_date(String release_date) {
-            this.release_date = release_date;
-        }
-
-        public String getCredit_id() {
-            return credit_id;
-        }
-
-        public void setCredit_id(String credit_id) {
-            this.credit_id = credit_id;
+            public void setVote_average(double vote_average) {
+                this.vote_average = vote_average;
+            }
         }
     }
 }

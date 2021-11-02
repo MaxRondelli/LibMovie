@@ -51,6 +51,7 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_search_movie);
         recyclerView.setLayoutManager(manager);
         search = (SearchView) searchBar.findViewById(R.id.search_bar);
+
         search.setOnQueryTextListener(this);
 
         movieList.clear();
@@ -64,6 +65,7 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
         recyclerViewAdapter = new RecyclerViewAdapter(getActivity().getBaseContext(), movieList, this);
         recyclerViewAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(recyclerViewAdapter);
+        search.setOnQueryTextListener(this);
     }
 
     @Override
@@ -87,7 +89,7 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
                 build();
         ApiInterface myInterface = retrofit.create(ApiInterface.class);
 
-        Call<MovieResults> call = myInterface.listOfMovies(MainActivity.API_KEY, s);
+        Call<MovieResults> call = myInterface.listOfMovies("movie", MainActivity.API_KEY, s);
 
         call.enqueue(new Callback<MovieResults>() {
             @Override
@@ -135,6 +137,62 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
 
     @Override
     public boolean onQueryTextChange(String s) {
+        s = s.toLowerCase();
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_search_movie);
+        recyclerView.setLayoutManager(manager);
+        search = (SearchView) searchBar.findViewById(R.id.search_bar);
+        search.setOnQueryTextListener(this);
+
+        movieList.clear();
+
+        Retrofit retrofit = new Retrofit.Builder().
+                baseUrl(MainActivity.BASE_URL).
+                addConverterFactory(GsonConverterFactory.create()).
+                build();
+        ApiInterface myInterface = retrofit.create(ApiInterface.class);
+
+        Call<MovieResults> call = myInterface.listOfMovies("movie", MainActivity.API_KEY, s);
+
+        call.enqueue(new Callback<MovieResults>() {
+            @Override
+            public void onResponse(Call<MovieResults> call, Response<MovieResults> response) {
+                movieList.clear();
+                MovieResults results = response.body();
+                if(results==null)return;
+                List<MovieResults.ResultsDTO> listOfMovies = results.getResults();
+
+                for (int i = 0; i < listOfMovies.size(); i++) {
+                    MovieResults.ResultsDTO curr = listOfMovies.get(i);
+
+                    movieList.add(new MovieClass(curr.getTitle(), "", "", MainActivity.IMG_URL + curr.getPoster_path(), 0, null, curr.getId()));
+                    recyclerViewAdapter = new RecyclerViewAdapter(getActivity().getBaseContext(), movieList, MovieSearchFragment.this);
+                    recyclerViewAdapter.notifyDataSetChanged();
+                    recyclerViewAdapter.setClickListener(MovieSearchFragment.this);
+                    recyclerView.setAdapter(recyclerViewAdapter);
+
+                    recyclerView.addOnItemTouchListener(
+                            new RecyclerItemListener(getContext(), recyclerView, new RecyclerItemListener.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(View view, int position) {
+                                    System.err.println("ciao -> " + position + " " + movieList.get(position).getTitle());
+                                }
+
+                                @Override
+                                public void onLongItemClick(View view, int position) {
+                                    // do whatever
+                                }
+                            })
+                    );
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MovieResults> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+
 
 
         return false;

@@ -29,12 +29,6 @@ public interface ApiInterface {
             @Query("api_key") String apiKey
     );
 
-    @GET("/3/movie/{category}")
-    Call<MovieResults> listOfMovies(
-            @Path("category") String category,
-            @Query("api_key") String apiKey,
-            @Query("language") String language
-    );
 
     @GET("/3/search/{category}")
     Call<SearchClass> Search(
@@ -53,9 +47,19 @@ public interface ApiInterface {
             @Query("language") String language
     );
 
-    @GET("/3/search/movie")
+    @GET("/3/search/{category}")
     Call<MovieResults> listOfMovies(
+            @Path("category") String category,
             @Query("api_key") String apiKey,
             @Query("query") String query
     );
+
+
+    @GET("/3/search/{category}")
+    Call<PeopleClass> listOfPerson(
+            @Path("category") String category,
+            @Query("api_key") String apiKey,
+            @Query("query") String query
+    );
+
 }
