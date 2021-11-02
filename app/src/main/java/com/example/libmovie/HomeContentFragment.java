@@ -23,7 +23,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HomeContentFragment extends Fragment implements RecyclerViewAdapter.ItemClickListener{
+public class HomeContentFragment extends Fragment implements RecyclerViewAdapter.ItemClickListener {
     List<MovieClass> movieList = new ArrayList<>();
     RecyclerViewAdapter recyclerViewAdapter;
     RecyclerView recyclerView;
@@ -81,6 +81,18 @@ public class HomeContentFragment extends Fragment implements RecyclerViewAdapter
                             recyclerViewAdapter.notifyDataSetChanged();
                             recyclerViewAdapter.setClickListener(HomeContentFragment.this);
                             recyclerView.setAdapter(recyclerViewAdapter);
+
+                            recyclerView.addOnItemTouchListener(
+                                    new RecyclerItemListener(getContext(), recyclerView ,new RecyclerItemListener.OnItemClickListener() {
+                                        @Override public void onItemClick(View view, int position) {
+                                            System.err.println("ciao -> " + position + " " + movieList.get(position).getTitle());
+                                        }
+
+                                        @Override public void onLongItemClick(View view, int position) {
+                                            // do whatever
+                                        }
+                                    })
+                            );
                         }
 
                         @Override

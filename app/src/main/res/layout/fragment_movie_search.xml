@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     android:id="@+id/movie_search">
 
-    <ListView
-        android:id="@+id/list"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_search_movie"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 
 </RelativeLayout>
