@@ -52,4 +52,10 @@ public interface ApiInterface {
             @Query("api_key") String apiKey,
             @Query("language") String language
     );
+
+    @GET("/3/search/movie")
+    Call<MovieResults> listOfMovies(
+            @Query("api_key") String apiKey,
+            @Query("query") String query
+    );
 }
