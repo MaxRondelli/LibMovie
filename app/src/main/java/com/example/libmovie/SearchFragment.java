@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -13,9 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SearchFragment extends Fragment {
     static String filter="";
@@ -29,17 +25,15 @@ public class SearchFragment extends Fragment {
         TabLayout tabLayout = view.findViewById(R.id.tab_layout_search);
         ViewPager2 pager2 = view.findViewById(R.id.viewpager_search);
 
-        MovieSearchFragment ms = new MovieSearchFragment(view);
-        ActorSearchFragment as = new ActorSearchFragment(view);
-        DirectorSearchFragment ds = new DirectorSearchFragment(view);
+        MovieSearchFragment movieSearchFragment = new MovieSearchFragment(view);
+        PeopleSearchFragment peopleSearchFragment = new PeopleSearchFragment(view);
 
         FragmentAdapter adapter = new FragmentAdapter(
                 getActivity().getSupportFragmentManager(),
                 getLifecycle(),
                 tabLayout.getTabCount(),
-                ms,
-                as,
-                ds
+                movieSearchFragment,
+                peopleSearchFragment
         );
 
         pager2.setAdapter(adapter);
@@ -53,16 +47,12 @@ public class SearchFragment extends Fragment {
                 pager2.setCurrentItem(tab.getPosition());
                 switch (tab.getPosition()){
                     case 0:
-                        if(t1)ms.reload();
-                        else t1=true;
+                        if( t1) movieSearchFragment.reload();
+                        else t1 = true;
                         break;
                     case 1:
-                        if(t2)as.reload();
-                        else t2=true;
-                    break;
-                    case 2:
-                        if(t3)ds.reload();
-                        else t3 = true;
+                        if (t2) peopleSearchFragment.reload();
+                        else t2 = true;
                     break;
                 }
             }

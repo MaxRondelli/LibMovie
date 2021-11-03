@@ -24,8 +24,7 @@
 
     <!-- Search fragment strings -->
     <string name="movies">Movies</string>
-    <string name="actors">Actors</string>
-    <string name="directors">Directors</string>
+    <string name="people">People</string>
 
     <!-- Login form strings -->
     <string name="username">Username</string>

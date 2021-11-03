@@ -10,9 +10,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     static int sort_param = 0;
-    static List<MovieClass> movieList = new ArrayList<>();
-    static List<ActorClass> actorList = new ArrayList<>();
-    static List<DirectorClass> directorList = new ArrayList<>();
 
     public static String BASE_URL = "https://api.themoviedb.org";
     public static String API_KEY = "c1180ea0157a385a1b0a30ba3183e640";
