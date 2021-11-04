@@ -1,17 +1,10 @@
 package com.example.libmovie;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,7 +12,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MovieDetailsActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +28,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         Call<MovieDetails> call = myInterface.listOfMovies(id, MainActivity.API_KEY);
 
-
         call.enqueue(new Callback<MovieDetails>() {
             @Override
             public void onResponse(Call<MovieDetails> call, Response<MovieDetails> response) {
@@ -50,15 +41,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 TextView title = (TextView) findViewById(R.id.title);
                 title.setText(results.getTitle());
 
-                //Aggiunta descrizion
+                //Aggiunta descrizione
                 TextView description = (TextView) findViewById(R.id.description);
                 description.setText("Overview:\n" + results.getOverview());
             }
 
             @Override
-            public void onFailure(Call<MovieDetails> call, Throwable t) {
-
-            }
+            public void onFailure(Call<MovieDetails> call, Throwable t) {}
         });
     }
 }

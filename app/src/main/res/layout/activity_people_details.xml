@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/backdrop"
+        android:id="@+id/profile"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:scaleType="centerCrop"
@@ -17,7 +16,7 @@
         android:background="@drawable/shape_gradient"/>
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
@@ -29,25 +28,12 @@
         android:maxLines="1" />
 
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/biography"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:textColor="@color/black"
-        android:layout_below="@+id/backdrop"
+        android:layout_below="@+id/profile"
         android:layout_marginTop="10dp"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="10dp"
-        android:backgroundTint="@color/design_default_color_primary"
-        android:src="@drawable/fab_add"
-        app:tint="@color/white"
-        app:borderWidth="0dp"/>
-
 </RelativeLayout>

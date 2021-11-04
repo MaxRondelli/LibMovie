@@ -27,6 +27,12 @@
         </activity>
 
         <activity
+            android:name=".PeopleDetailsActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+        </activity>
+
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
         </activity>

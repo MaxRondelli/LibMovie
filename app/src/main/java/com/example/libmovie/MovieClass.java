@@ -1,7 +1,5 @@
 package com.example.libmovie;
 
-import android.graphics.Movie;
-
 import java.util.List;
 
 public class MovieClass {

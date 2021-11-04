@@ -39,10 +39,17 @@ public interface ApiInterface {
             @Query("page") int page
     );
 
-    @GET("/3/person/{person_id}/{category}")
+    @GET("/3/{category}/{person_id}")
     Call<PeopleClass> People(
-            @Path("person_id") int person_id,
             @Path("category") String category,
+            @Path("person_id") int person_id,
+            @Query("api_key") String apiKey,
+            @Query("language") String language
+    );
+
+    @GET("/3/person/{person_id}")
+    Call<PeopleDetailsClass> PeopleDetails(
+            @Path("person_id") int person_id,
             @Query("api_key") String apiKey,
             @Query("language") String language
     );

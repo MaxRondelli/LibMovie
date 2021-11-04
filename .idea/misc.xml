@@ -21,6 +21,7 @@
         <entry key="app/src/main/res/drawable/account.xml" value="0.24461538461538462" />
         <entry key="app/src/main/res/drawable/bg_white_rounded.xml" value="0.17604166666666668" />
         <entry key="app/src/main/res/drawable/credential_form.xml" value="0.22447916666666667" />
+        <entry key="app/src/main/res/drawable/gradient.xml" value="0.29444444444444445" />
         <entry key="app/src/main/res/drawable/home.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/drawable/icon_home.xml" value="0.17604166666666668" />
@@ -47,14 +48,19 @@
         <entry key="app/src/main/res/layout/fragment_in_theater.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/layout/fragment_library.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_most_popular.xml" value="0.15989583333333332" />
+        <entry key="app/src/main/res/layout/fragment_movie_details.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/layout/fragment_movie_search.xml" value="0.1693840579710145" />
         <entry key="app/src/main/res/layout/fragment_not_watched.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/layout/fragment_notwatched.xml" value="0.15989583333333332" />
+        <entry key="app/src/main/res/layout/fragment_people_details.xml" value="0.15989583333333332" />
+        <entry key="app/src/main/res/layout/fragment_people_search.xml" value="0.18432971014492755" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_stats.xml" value="0.12092391304347826" />
         <entry key="app/src/main/res/layout/fragment_top_rated.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/layout/fragment_watched.xml" value="0.55" />
         <entry key="app/src/main/res/layout/listitemdesign.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/listsearchactor.xml" value="0.18432971014492755" />
+        <entry key="app/src/main/res/layout/listsearchdesign.xml" value="0.18840579710144928" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.25" />
         <entry key="app/src/main/res/menu/bottom_navigation.xml" value="0.24722222222222223" />
         <entry key="app/src/main/res/menu/menu_library.xml" value="0.22604166666666667" />
