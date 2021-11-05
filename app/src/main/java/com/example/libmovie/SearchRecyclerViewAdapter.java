@@ -42,6 +42,7 @@ public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecycl
         new DownloadImageTask(holder.image).execute(movie.getImageUrl());
 
         //Animation
+        holder.container.setAnimation(AnimationUtils.loadAnimation(inflater.getContext(), R.anim.scale_up_animation));
         //holder.image.setAnimation(AnimationUtils.loadAnimation(inflater.getContext(), R.anim.fade_transition_animation));
         //holder.container.setAnimation(AnimationUtils.loadAnimation(inflater.getContext(), R.anim.fade_transition_animation));
     }

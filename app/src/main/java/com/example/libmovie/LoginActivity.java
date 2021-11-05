@@ -1,9 +1,12 @@
 package com.example.libmovie;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -14,10 +17,19 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
 public class LoginActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        RelativeLayout relativeLayout = findViewById(R.id.login);
+        AnimationDrawable animationDrawable = (AnimationDrawable) relativeLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.start();
+
+
 
         try {
             FileOutputStream fOut = openFileOutput("user.txt", MODE_PRIVATE);

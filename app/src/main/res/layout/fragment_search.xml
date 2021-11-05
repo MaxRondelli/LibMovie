@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/design_default_color_primary"
     android:id="@+id/search">
 
@@ -37,11 +38,15 @@
 
     </com.google.android.material.tabs.TabLayout>
 
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tab_layout_search"
-        android:background="@color/design_default_color_on_primary"/>
+        android:background="@color/design_default_color_on_primary" >
+
+
+    </androidx.viewpager2.widget.ViewPager2>
 
 </RelativeLayout>
