@@ -10,6 +10,7 @@ public class MovieClass {
     private double voteAverage;
     private List<String> genres;
     private int id;
+    private int status;
 
     MovieClass(String title, String description, String releaseDate, String imageUrl, double voteAverage, List<String> genres, int id) {
         this.title = title;
@@ -19,6 +20,7 @@ public class MovieClass {
         this.voteAverage = voteAverage;
         this.genres = genres;
         this.id = id;
+        status = 0;
     }
 
     //Getter methods
@@ -29,4 +31,15 @@ public class MovieClass {
     double getVoteAverage() {return voteAverage;}
     List<String> getGenres() {return genres;}
     int getId() {return id;}
+    public int getStatus() {
+        return status;
+    }
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public boolean equals(int id){
+        return this.id == id;
+    }
+
 }

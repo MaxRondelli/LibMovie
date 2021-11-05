@@ -1,10 +1,14 @@
 package com.example.libmovie;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,6 +20,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
+
+        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_add);
 
         Bundle extras = getIntent().getExtras();
         int id = extras.getInt("movieId");
@@ -44,6 +50,37 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 //Aggiunta descrizione
                 TextView description = (TextView) findViewById(R.id.description);
                 description.setText("Overview:\n" + results.getOverview());
+
+                // Aggiunta in libreria ( Watched / Not Watched / Remove it)
+                floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        boolean check = false;
+                        int index = -1;
+
+                        for( int i = 0; i < MainActivity.movieListId.size(); i++ ){
+                            if ( MainActivity.movieListId.get(i).equals(id) ){
+                                check = true;
+                                index = i;
+                                break;
+                            }
+                        }
+
+                        if( check == true ){
+                            MainActivity.movieListId.get(index).setStatus((MainActivity.movieListId.get(index).getStatus() + 1 ) % 3 );
+                            if ( MainActivity.movieListId.get(index).getStatus() == 0 ){
+                                MainActivity.movieListId.remove(index);
+                            }
+                        } else {
+                            MovieClass movieClass = new MovieClass(results.getTitle(), results.getOverview(), results.getRelease_date(), MainActivity.IMG_URL + results.getPoster_path(), results.getVote_average(), null, results.getId());
+                            movieClass.setStatus(movieClass.getStatus() + 1);
+                            MainActivity.movieListId.add(movieClass);
+                        }
+
+                        System.out.println(MainActivity.movieListId.size());
+                    }
+                });
+                // Fine aggiunta il libreria ( Watched / Not Watched / Remove it )
             }
 
             @Override

@@ -72,7 +72,7 @@ public class PeopleSearchFragment extends Fragment implements SearchView.OnQuery
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(view.getContext(), movieList.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(view.getContext(), movieList.get(position).getTitle(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

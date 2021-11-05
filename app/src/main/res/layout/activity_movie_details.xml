@@ -4,41 +4,53 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/backdrop"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="true"/>
+    <ScrollView android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="250dp"
-        android:background="@drawable/shape_gradient"/>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        android:layout_marginTop="210dp"
-        android:layout_marginHorizontal="10dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:ellipsize="end"
-        android:maxLines="1" />
+            <ImageView
+                android:id="@+id/backdrop"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"/>
 
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:textColor="@color/black"
-        android:layout_below="@+id/backdrop"
-        android:layout_marginTop="10dp"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                android:background="@drawable/shape_gradient"/>
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:layout_marginTop="210dp"
+                android:layout_marginHorizontal="10dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:ellipsize="end"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:textColor="@color/black"
+                android:layout_below="@+id/backdrop"
+                android:layout_marginTop="10dp"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

@@ -3,6 +3,7 @@ package com.example.libmovie;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import android.annotation.SuppressLint;
+import android.graphics.Movie;
 import android.os.Bundle;
 import com.google.android.material.navigation.NavigationBarView;
 import java.util.ArrayList;
@@ -10,6 +11,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     static int sort_param = 0;
+
+    //Test aggiunta in libreria
+    public static List<MovieClass> movieListId = new ArrayList<>();
+    //Fine test
 
     public static String BASE_URL = "https://api.themoviedb.org";
     public static String API_KEY = "c1180ea0157a385a1b0a30ba3183e640";
