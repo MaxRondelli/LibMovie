@@ -1,5 +1,8 @@
 package com.example.libmovie;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -58,7 +61,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                         boolean check = false;
                         int index = -1;
 
-                        for( int i = 0; i < MainActivity.movieListId.size(); i++ ){
+                        for (int i = 0; i < MainActivity.movieListId.size(); i++) {
                             if ( MainActivity.movieListId.get(i).equals(id) ){
                                 check = true;
                                 index = i;
@@ -66,9 +69,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
                             }
                         }
 
-                        if( check == true ){
+                        if (check == true) {
                             MainActivity.movieListId.get(index).setStatus((MainActivity.movieListId.get(index).getStatus() + 1 ) % 3 );
-                            if ( MainActivity.movieListId.get(index).getStatus() == 0 ){
+                            if (MainActivity.movieListId.get(index).getStatus() == 0) {
                                 MainActivity.movieListId.remove(index);
                             }
                         } else {
@@ -77,7 +80,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
                             MainActivity.movieListId.add(movieClass);
                         }
 
-                        System.out.println(MainActivity.movieListId.size());
+                        WatchedFragment w = WatchedFragment.wf;
+                        NotWatchedFragment nw  = NotWatchedFragment.wf;
+                        if(WatchedFragment.c){
+                            if(w!=null)w.reload();
+                            nw.reload();
+                            WatchedFragment.c=false;
+                        }
                     }
                 });
                 // Fine aggiunta il libreria ( Watched / Not Watched / Remove it )
@@ -87,4 +96,5 @@ public class MovieDetailsActivity extends AppCompatActivity {
             public void onFailure(Call<MovieDetails> call, Throwable t) {}
         });
     }
+
 }

@@ -141,7 +141,5 @@ public class HomeContentFragment extends Fragment implements RecyclerViewAdapter
     }
 
     @Override
-    public void onItemClick(View view, int position) {
-        //Toast.makeText(view.getContext(), movieList.get(position).getTitle(), Toast.LENGTH_SHORT).show();
-    }
+    public void onItemClick(View view, int position) {}
 }

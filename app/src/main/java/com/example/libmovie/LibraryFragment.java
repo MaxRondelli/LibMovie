@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +13,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 
 public class LibraryFragment extends Fragment {
+    boolean t1 = true, t2 = false;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -20,12 +23,16 @@ public class LibraryFragment extends Fragment {
         TabLayout tabLayout = view.findViewById(R.id.tab_layout_library);
         ViewPager2 pager2 = view.findViewById(R.id.viewpager_library);
 
+        NotWatchedFragment notWatchedFragment = new NotWatchedFragment();
+        WatchedFragment watchedFragment = new WatchedFragment();
+
         FragmentAdapter adapter = new FragmentAdapter(
                 getActivity().getSupportFragmentManager(),
                 getLifecycle(),
                 tabLayout.getTabCount(),
-                new NotWatchedFragment(),
-                new WatchedFragment());
+                notWatchedFragment,
+                watchedFragment
+        );
 
         pager2.setAdapter(adapter);
 
@@ -33,14 +40,29 @@ public class LibraryFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 pager2.setCurrentItem(tab.getPosition());
+
+                System.out.println("SELECTED");
+
+                switch (tab.getPosition()){
+                    case 0:
+                        if (t1) watchedFragment.reload();
+                        else t1 = true;
+                        break;
+                    case 1:
+                        if (t2) notWatchedFragment.reload();
+                        else t2 = true;
+                        break;
+                }
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
+            public void onTabUnselected(TabLayout.Tab tab) {}
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+                pager2.setCurrentItem(tab.getPosition());
+
+                System.out.println("RESELECTED");
             }
         });
 

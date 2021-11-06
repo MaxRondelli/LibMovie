@@ -15,7 +15,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class SearchFragment extends Fragment {
     static String filter="";
-    boolean t1=true,t2=false,t3=false;
+    boolean t1 = true, t2 = false;
     View view;
     @Nullable
     @Override
@@ -47,7 +47,7 @@ public class SearchFragment extends Fragment {
                 pager2.setCurrentItem(tab.getPosition());
                 switch (tab.getPosition()){
                     case 0:
-                        if( t1) movieSearchFragment.reload();
+                        if (t1) movieSearchFragment.reload();
                         else t1 = true;
                         break;
                     case 1:
@@ -58,12 +58,10 @@ public class SearchFragment extends Fragment {
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
+            public void onTabUnselected(TabLayout.Tab tab) {}
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
+            public void onTabReselected(TabLayout.Tab tab) {}
         });
 
         pager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {

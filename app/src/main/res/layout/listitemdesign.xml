@@ -59,14 +59,7 @@
              android:layout_marginTop="175dp"
              android:layout_marginLeft="140dp"/>
 
-         <ImageButton
-             android:id="@+id/add_button"
-             android:layout_width="30dp"
-             android:layout_height="30dp"
-             android:layout_marginRight="5dp"
-             android:src="@drawable/icon_add"
-             app:tint="@color/design_default_color_primary"
-             android:layout_gravity="top|right"/>
+
 
    </androidx.cardview.widget.CardView>
 
