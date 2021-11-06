@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WatchedFragment extends Fragment implements RecyclerViewAdapter.ItemClickListener {
-    static WatchedFragment wf=null;
+    static WatchedFragment wf = null;
     static boolean c = false;
     List<MovieClass> movieList = new ArrayList<>();
     RecyclerViewAdapter recyclerViewAdapter;

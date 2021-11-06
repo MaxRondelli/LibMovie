@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NotWatchedFragment extends Fragment implements RecyclerViewAdapter.ItemClickListener {
-    static NotWatchedFragment wf=null;
+    static NotWatchedFragment wf = null;
     List<MovieClass> movieList = new ArrayList<>();
     RecyclerViewAdapter recyclerViewAdapter;
     RecyclerView recyclerView;
@@ -30,7 +30,7 @@ public class NotWatchedFragment extends Fragment implements RecyclerViewAdapter.
         recyclerView.setLayoutManager(manager);
         movieList.clear();
 
-        wf=this;
+        wf = this;
 
         for (int i = 0; i < MainActivity.movieListId.size(); i++){
             if (MainActivity.movieListId.get(i).getStatus() == 1){
