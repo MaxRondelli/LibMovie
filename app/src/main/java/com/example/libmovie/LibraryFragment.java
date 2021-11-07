@@ -29,8 +29,8 @@ public class LibraryFragment extends Fragment {
         NotWatchedFragment notWatchedFragment = new NotWatchedFragment();
         WatchedFragment watchedFragment = new WatchedFragment();
 
-        // Gestione menù in libreria
-        FloatingActionMenu floatingActionMenu = view.findViewById(R.id.fab_menu);
+        // INIZIO CODICE MENU LIBRERIA
+        /*FloatingActionMenu floatingActionMenu = view.findViewById(R.id.fab_menu);
         FloatingActionButton layoutButton = floatingActionMenu.findViewById(R.id.layout_style);
         FloatingActionButton orderButton = floatingActionMenu.findViewById(R.id.order_by);
 
@@ -66,8 +66,8 @@ public class LibraryFragment extends Fragment {
                         break;
                 }
             }
-        });
-        // Fine gestione menù in libreria
+        });*/
+        // FINE CODICE MENU LIBRERIA
 
         FragmentAdapter adapter = new FragmentAdapter(
                 getActivity().getSupportFragmentManager(),
