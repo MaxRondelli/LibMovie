@@ -25,9 +25,37 @@ public class MovieDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_details);
 
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_add);
-
         Bundle extras = getIntent().getExtras();
         int id = extras.getInt("movieId");
+
+        // Colorazione del bottone all'apertura dell'activity
+        boolean check = false;
+        int index = -1;
+
+        for (int i = 0; i < MainActivity.movieListId.size(); i++) {
+            if ( MainActivity.movieListId.get(i).equals(id) ){
+                check = true;
+                index = i;
+                break;
+            }
+        }
+
+        if (check) {
+            switch (MainActivity.movieListId.get(index).getStatus()) {
+                case 0:
+                    floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF6200EE")));
+                    floatingActionButton.setImageResource(R.drawable.icon_add);
+                    break;
+                case 1:
+                    floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F1C40F")));
+                    floatingActionButton.setImageResource(R.drawable.icon_check);
+                    break;
+                case 2:
+                    floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#229954")));
+                    floatingActionButton.setImageResource(R.drawable.icon_check);
+                    break;
+            }
+        }
 
         Retrofit retrofit = new Retrofit.Builder().
                 baseUrl(MainActivity.BASE_URL).
@@ -71,21 +99,29 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
                         if (check == true) {
                             MainActivity.movieListId.get(index).setStatus((MainActivity.movieListId.get(index).getStatus() + 1 ) % 3 );
+                            // Status 2: il film è stato visto
+                            if (MainActivity.movieListId.get(index).getStatus() == 2) floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#229954")));
+                            // Status 0: il film è stato rimosso
                             if (MainActivity.movieListId.get(index).getStatus() == 0) {
+                                floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF6200EE")));
                                 MainActivity.movieListId.remove(index);
+                                floatingActionButton.setImageResource(R.drawable.icon_add);
                             }
                         } else {
+                            // Status 1: il film è stato aggiunto in libreria
                             MovieClass movieClass = new MovieClass(results.getTitle(), results.getOverview(), results.getRelease_date(), MainActivity.IMG_URL + results.getPoster_path(), results.getVote_average(), null, results.getId());
                             movieClass.setStatus(movieClass.getStatus() + 1);
                             MainActivity.movieListId.add(movieClass);
+                            floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F1C40F")));
+                            floatingActionButton.setImageResource(R.drawable.icon_check);
                         }
 
                         WatchedFragment w = WatchedFragment.wf;
                         NotWatchedFragment nw  = NotWatchedFragment.wf;
-                        if(WatchedFragment.c){
-                            if(w!=null)w.reload();
+                        if (WatchedFragment.c) {
+                            if (w != null) w.reload();
                             nw.reload();
-                            WatchedFragment.c=false;
+                            WatchedFragment.c = false;
                         }
                     }
                 });

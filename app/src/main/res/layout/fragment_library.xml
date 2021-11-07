@@ -31,6 +31,7 @@
         android:layout_below="@+id/tab_layout_library"/>
 
     <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fab_menu"
         android:layout_width="332dp"
         android:layout_height="472dp"
         android:layout_alignParentEnd="true"

@@ -2,11 +2,9 @@ package com.example.libmovie;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,15 +21,15 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HomeContentFragment extends Fragment implements RecyclerViewAdapter.ItemClickListener {
+public class HomeContentFragment extends Fragment implements HomeRecyclerViewAdapter.ItemClickListener {
     List<MovieClass> movieList = new ArrayList<>();
-    RecyclerViewAdapter recyclerViewAdapter;
+    HomeRecyclerViewAdapter homeRecyclerViewAdapter;
     RecyclerView recyclerView;
     LinearLayoutManager manager;
     View view;
     String query;
 
-    private RecyclerViewAdapter.ItemClickListener listener;
+    private HomeRecyclerViewAdapter.ItemClickListener listener;
 
     HomeContentFragment(String query) {
         this.query = query;
@@ -78,10 +75,10 @@ public class HomeContentFragment extends Fragment implements RecyclerViewAdapter
 
                             movieList.add(new MovieClass(results2.getTitle(), results2.getOverview(), results2.getRelease_date(),MainActivity.IMG_URL + results2.getPoster_path(), results2.getVote_average(), gen_list, results2.getId()));
 
-                            recyclerViewAdapter = new RecyclerViewAdapter(getActivity().getBaseContext(), movieList, HomeContentFragment.this);
-                            recyclerViewAdapter.notifyDataSetChanged();
-                            recyclerViewAdapter.setClickListener(HomeContentFragment.this);
-                            recyclerView.setAdapter(recyclerViewAdapter);
+                            homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(getActivity().getBaseContext(), movieList, HomeContentFragment.this);
+                            homeRecyclerViewAdapter.notifyDataSetChanged();
+                            homeRecyclerViewAdapter.setClickListener(HomeContentFragment.this);
+                            recyclerView.setAdapter(homeRecyclerViewAdapter);
 
                             recyclerView.addOnItemTouchListener(
                                     new RecyclerItemListener(getContext(), recyclerView ,new RecyclerItemListener.OnItemClickListener() {
@@ -108,10 +105,10 @@ public class HomeContentFragment extends Fragment implements RecyclerViewAdapter
             }
         });
 
-        recyclerViewAdapter = new RecyclerViewAdapter(getActivity().getBaseContext(), movieList, HomeContentFragment.this);
-        recyclerViewAdapter.notifyDataSetChanged();
-        recyclerViewAdapter.setClickListener(HomeContentFragment.this);
-        recyclerView.setAdapter(recyclerViewAdapter);
+        homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(getActivity().getBaseContext(), movieList, HomeContentFragment.this);
+        homeRecyclerViewAdapter.notifyDataSetChanged();
+        homeRecyclerViewAdapter.setClickListener(HomeContentFragment.this);
+        recyclerView.setAdapter(homeRecyclerViewAdapter);
 
         return view;
     }
@@ -135,9 +132,9 @@ public class HomeContentFragment extends Fragment implements RecyclerViewAdapter
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         sort();
 
-        recyclerViewAdapter = new RecyclerViewAdapter(getActivity().getBaseContext(), movieList, this);
-        recyclerViewAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(recyclerViewAdapter);
+        homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(getActivity().getBaseContext(), movieList, this);
+        homeRecyclerViewAdapter.notifyDataSetChanged();
+        recyclerView.setAdapter(homeRecyclerViewAdapter);
     }
 
     @Override

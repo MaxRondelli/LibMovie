@@ -10,21 +10,64 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.material.tabs.TabLayout;
 
 public class LibraryFragment extends Fragment {
     boolean t1 = true, t2 = false;
+    static int layout = 0;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_library, container, false);
-
         TabLayout tabLayout = view.findViewById(R.id.tab_layout_library);
         ViewPager2 pager2 = view.findViewById(R.id.viewpager_library);
 
         NotWatchedFragment notWatchedFragment = new NotWatchedFragment();
         WatchedFragment watchedFragment = new WatchedFragment();
+
+        // Gestione menù in libreria
+        FloatingActionMenu floatingActionMenu = view.findViewById(R.id.fab_menu);
+        FloatingActionButton layoutButton = floatingActionMenu.findViewById(R.id.layout_style);
+        FloatingActionButton orderButton = floatingActionMenu.findViewById(R.id.order_by);
+
+        layoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                layout = 1 - layout;
+                switch (tabLayout.getSelectedTabPosition()) {
+                    case 0:
+                        if (t1) notWatchedFragment.reload();
+                        else t1 = true;
+                        break;
+                    case 1:
+                        if (t2) watchedFragment.reload();
+                        else t2 = true;
+                        break;
+                }
+            }
+        });
+
+        orderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.sort_param = -1 * MainActivity.sort_param;
+                switch (tabLayout.getSelectedTabPosition()) {
+                    case 0:
+                        if (t1) notWatchedFragment.sort();
+                        else t1 = true;
+                        break;
+                    case 1:
+                        if (t2) watchedFragment.sort();
+                        else t2 = true;
+                        break;
+                }
+            }
+        });
+        // Fine gestione menù in libreria
 
         FragmentAdapter adapter = new FragmentAdapter(
                 getActivity().getSupportFragmentManager(),
@@ -41,15 +84,15 @@ public class LibraryFragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 pager2.setCurrentItem(tab.getPosition());
 
-                System.out.println("SELECTED");
-
                 switch (tab.getPosition()){
                     case 0:
-                        if (t1) watchedFragment.reload();
+                        MainActivity.sort_param = 1;
+                        if (t1) notWatchedFragment.reload();
                         else t1 = true;
                         break;
                     case 1:
-                        if (t2) notWatchedFragment.reload();
+                        MainActivity.sort_param = 1;
+                        if (t2) watchedFragment.reload();
                         else t2 = true;
                         break;
                 }
@@ -61,8 +104,6 @@ public class LibraryFragment extends Fragment {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
                 pager2.setCurrentItem(tab.getPosition());
-
-                System.out.println("RESELECTED");
             }
         });
 

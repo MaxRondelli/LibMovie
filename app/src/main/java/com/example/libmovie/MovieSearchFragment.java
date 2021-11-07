@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -13,15 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,8 +31,6 @@ public class MovieSearchFragment extends Fragment implements SearchView.OnQueryT
     View view;
     View searchBar;
     SearchView search;
-
-    private RecyclerViewAdapter.ItemClickListener listener;
 
     MovieSearchFragment(View searchBar) {
         this.searchBar = searchBar;

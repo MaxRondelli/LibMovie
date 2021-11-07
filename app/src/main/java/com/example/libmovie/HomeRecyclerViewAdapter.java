@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,12 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder> {
     private List<MovieClass> movieList;
     private LayoutInflater inflater;
     private ItemClickListener clickListener;
 
-    RecyclerViewAdapter(Context context, List<MovieClass> movieList, ItemClickListener clickListener) {
+    HomeRecyclerViewAdapter(Context context, List<MovieClass> movieList, ItemClickListener clickListener) {
         this.inflater = LayoutInflater.from(context);
         this.movieList = movieList;
         this.clickListener = clickListener;
