@@ -55,15 +55,6 @@
             app:fab_label="@string/order_by" />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/genre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_genre"
-            app:fab_colorNormal="@color/design_default_color_primary"
-            app:fab_colorPressed="@color/design_default_color_primary"
-            app:fab_label="@string/genre" />
-
-        <com.github.clans.fab.FloatingActionButton
             android:id="@+id/layout_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
