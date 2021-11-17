@@ -6,6 +6,10 @@ import android.annotation.SuppressLint;
 import android.graphics.Movie;
 import android.os.Bundle;
 import com.google.android.material.navigation.NavigationBarView;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public static String REGION = "US";
     static String LANGUAGE = "en-US";
     static String IMG_URL = "https://image.tmdb.org/t/p/w500";
+    static OutputStreamWriter ratfile;
 
     Fragment selectedFragment = new HomeFragment() ;
 
@@ -32,6 +37,25 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationBarView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnItemSelectedListener(navListener);
+
+        FileOutputStream fOut = null;
+        try {
+            fOut = openFileOutput("rating.txt", MODE_PRIVATE);
+            ratfile= new OutputStreamWriter(fOut);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        PersonDatabase appDB = PersonDatabase.getInstance(this);
+
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+            }
+        });
+
+
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
     }

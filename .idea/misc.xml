@@ -40,6 +40,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_movie_details.xml" value="0.14488348530901723" />
         <entry key="app/src/main/res/layout/activity_people_details.xml" value="0.18432971014492755" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.18931159420289856" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.15364583333333334" />
         <entry key="app/src/main/res/layout/element_searchbar.xml" value="0.18931159420289856" />
         <entry key="app/src/main/res/layout/element_toolbar.xml" value="0.25" />

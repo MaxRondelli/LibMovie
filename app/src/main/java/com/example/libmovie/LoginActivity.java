@@ -3,6 +3,8 @@ package com.example.libmovie;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,9 +17,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
-
+    static boolean correct;
+    static String loggedUser="";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,52 +34,62 @@ public class LoginActivity extends AppCompatActivity {
         animationDrawable.start();
 
 
-
-        try {
-            FileOutputStream fOut = openFileOutput("user.txt", MODE_PRIVATE);
-            OutputStreamWriter osw = new OutputStreamWriter(fOut);
-            osw.write("marfra99x password\n");
-            osw.write("root root\n");
-            osw.write("superuser psw\n");
-            osw.flush();
-            osw.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         Button btn = findViewById(R.id.sign_in);
         btn.setOnClickListener(view -> openMain());
+
+        Button reg = findViewById(R.id.register);
+        reg.setOnClickListener(view -> registra());
+    }
+
+    public void registra(){
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(intent);
     }
 
     public void openMain() {
-        try {
-            EditText username = (EditText)findViewById(R.id.username);
-            String userText = username.getText().toString();
 
-            EditText et = (EditText)findViewById(R.id.password);
-            String pswText = et.getText().toString();
+        PersonDatabase appDB = PersonDatabase.getInstance(this);
 
-            Intent intent = new Intent(this, MainActivity.class);
-            FileInputStream fin = openFileInput("user.txt");
-            int c='\n';
-            while(c=='\n' && !userText.isEmpty() && !pswText.isEmpty()) {
-                String user = "";
-                String psw = "";
-                while ((c = fin.read()) != ' ') {
-                    user = user + Character.toString((char) c);
-                }
+        correct = false;
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
 
-                while ((c = fin.read()) != '\n' && c != -1) {
-                    psw = psw + Character.toString((char) c);
+                /*
+                // DELETE ALL DB ELEMENT
+                List<Person> tmp = appDB.personDAO().getPersonList();
+                for(int i=0; i<tmp.size(); i++) {
+                    appDB.personDAO().deletePerson(tmp.get(i));
                 }
-                if(user.equals(userText) && psw.equals(pswText)){
-                    startActivity(intent);
-                    return;
+                */
+
+                EditText username = (EditText)findViewById(R.id.username);
+                String userText = username.getText().toString();
+
+                EditText et = (EditText)findViewById(R.id.password);
+                String pswText = et.getText().toString();
+
+                List<Person> p = appDB.personDAO().getPersonList();
+                for(int i=0; i<p.size(); i++){
+                    if(p.get(i).nickname.equals(userText) && p.get(i).password.equals(pswText)){
+                        loggedUser = userText;
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        return;
+                    }
                 }
-                System.out.println(user + " " + psw + " " + userText + " " + pswText + "\n");
+                new Handler(Looper.getMainLooper()).post(
+                        new Runnable() {
+                            public void run() {
+                                // yourContext is Activity or Application context
+                                Toast.makeText(getBaseContext(), "INVALID USERNAME OR PASSWORD", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                );
             }
-        } catch(Exception e){}
+        });
 
-        Toast.makeText(getApplicationContext(),"Wrong username or password",Toast.LENGTH_SHORT).show();
+
+
     }
 }

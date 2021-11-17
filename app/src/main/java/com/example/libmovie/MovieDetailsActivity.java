@@ -2,15 +2,24 @@ package com.example.libmovie;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +32,26 @@ public class MovieDetailsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
+
+        RatingBar rb = (RatingBar) findViewById(R.id.ratingBar);
+
+        MovieDatabase mdb = MovieDatabase.getInstance(this);
+
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                List<JoinClass> listmovie = mdb.movieDAO().getMovieList();
+
+                System.err.println(listmovie.size());
+                for(int i=0; i<listmovie.size(); i++){
+                    if(LoginActivity.loggedUser.equals(listmovie.get(i).nickname))
+                        System.out.println(i + "->" + listmovie.get(i).movie_id);
+                }
+            }
+        });
+
+
+
 
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_add);
         Bundle extras = getIntent().getExtras();
@@ -40,22 +69,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
             }
         }
 
-        if (check) {
-            switch (MainActivity.movieListId.get(index).getStatus()) {
-                case 0:
-                    floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF6200EE")));
-                    floatingActionButton.setImageResource(R.drawable.icon_add);
-                    break;
-                case 1:
-                    floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F1C40F")));
-                    floatingActionButton.setImageResource(R.drawable.icon_check);
-                    break;
-                case 2:
-                    floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#229954")));
-                    floatingActionButton.setImageResource(R.drawable.icon_check);
-                    break;
-            }
-        }
+
+
+
+        floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF6200EE")));
+        floatingActionButton.setImageResource(R.drawable.icon_add);
+
+
 
         Retrofit retrofit = new Retrofit.Builder().
                 baseUrl(MainActivity.BASE_URL).
@@ -82,51 +102,70 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 TextView description = (TextView) findViewById(R.id.description);
                 description.setText("Overview:\n" + results.getOverview());
 
-                // Aggiunta in libreria ( Watched / Not Watched / Remove it)
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        List<JoinClass> listmovie = mdb.movieDAO().getMovieList();
+
+                        for(int i=0; i<listmovie.size(); i++){
+                            if(LoginActivity.loggedUser.equals(listmovie.get(i).nickname) && results.getId()==listmovie.get(i).movie_id){
+                                switch(listmovie.get(i).status){
+                                    case 1:
+                                        floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F1C40F")));
+                                        floatingActionButton.setImageResource(R.drawable.icon_check);
+                                        break;
+                                    case 2:
+                                        floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#229954")));
+                                        floatingActionButton.setImageResource(R.drawable.icon_check);
+                                        break;
+                                }
+                            }
+
+                        }
+                    }
+                });
+
+
+            // Aggiunta in libreria ( Watched / Not Watched / Remove it)
                 floatingActionButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        boolean check = false;
-                        int index = -1;
+                        MovieDatabase mdb = MovieDatabase.getInstance(MovieDetailsActivity.this);
+                        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                List<JoinClass> listmovie = mdb.movieDAO().getMovieList();
 
-                        for (int i = 0; i < MainActivity.movieListId.size(); i++) {
-                            if ( MainActivity.movieListId.get(i).equals(id) ){
-                                check = true;
-                                index = i;
-                                break;
+                                for(int i=0; i<listmovie.size(); i++) {
+                                    if (LoginActivity.loggedUser.equals(listmovie.get(i).nickname) && results.getId() == listmovie.get(i).movie_id) {
+                                        mdb.movieDAO().updateMovie(new JoinClass(LoginActivity.loggedUser,results.getId(),(listmovie.get(i).status+1)%3));
+                                        switch((listmovie.get(i).status+1)%3){
+                                            case 0:
+                                                floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF6200EE")));
+                                                floatingActionButton.setImageResource(R.drawable.icon_add);
+                                                break;
+                                            case 1:
+                                                floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F1C40F")));
+                                                floatingActionButton.setImageResource(R.drawable.icon_check);
+                                                break;
+                                            case 2:
+                                                floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#229954")));
+                                                floatingActionButton.setImageResource(R.drawable.icon_check);
+                                                break;
+                                        }
+                                        return;
+                                    }
+                                }
+                                mdb.movieDAO().insertMovie(new JoinClass(LoginActivity.loggedUser,results.getId(),1));
+                                floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F1C40F")));
+                                floatingActionButton.setImageResource(R.drawable.icon_check);
                             }
-                        }
-
-                        if (check == true) {
-                            MainActivity.movieListId.get(index).setStatus((MainActivity.movieListId.get(index).getStatus() + 1 ) % 3 );
-                            // Status 2: il film è stato visto
-                            if (MainActivity.movieListId.get(index).getStatus() == 2) floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#229954")));
-                            // Status 0: il film è stato rimosso
-                            if (MainActivity.movieListId.get(index).getStatus() == 0) {
-                                floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF6200EE")));
-                                MainActivity.movieListId.remove(index);
-                                floatingActionButton.setImageResource(R.drawable.icon_add);
-                            }
-                        } else {
-                            // Status 1: il film è stato aggiunto in libreria
-                            MovieClass movieClass = new MovieClass(results.getTitle(), results.getOverview(), results.getRelease_date(), MainActivity.IMG_URL + results.getPoster_path(), results.getVote_average(), null, results.getId());
-                            movieClass.setStatus(movieClass.getStatus() + 1);
-                            MainActivity.movieListId.add(movieClass);
-                            floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F1C40F")));
-                            floatingActionButton.setImageResource(R.drawable.icon_check);
-                        }
-
-                        WatchedFragment w = WatchedFragment.wf;
-                        NotWatchedFragment nw  = NotWatchedFragment.wf;
-                        if (WatchedFragment.c) {
-                            if (w != null) w.reload();
-                            nw.reload();
-                            WatchedFragment.c = false;
-                        }
+                        });
                     }
                 });
                 // Fine aggiunta il libreria ( Watched / Not Watched / Remove it )
             }
+
 
             @Override
             public void onFailure(Call<MovieDetails> call, Throwable t) {}

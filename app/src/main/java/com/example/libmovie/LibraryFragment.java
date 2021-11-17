@@ -30,7 +30,7 @@ public class LibraryFragment extends Fragment {
         WatchedFragment watchedFragment = new WatchedFragment();
 
         // INIZIO CODICE MENU LIBRERIA
-        /*FloatingActionMenu floatingActionMenu = view.findViewById(R.id.fab_menu);
+        FloatingActionMenu floatingActionMenu = view.findViewById(R.id.fab_menu);
         FloatingActionButton layoutButton = floatingActionMenu.findViewById(R.id.layout_style);
         FloatingActionButton orderButton = floatingActionMenu.findViewById(R.id.order_by);
 
@@ -66,7 +66,7 @@ public class LibraryFragment extends Fragment {
                         break;
                 }
             }
-        });*/
+        });
         // FINE CODICE MENU LIBRERIA
 
         FragmentAdapter adapter = new FragmentAdapter(
