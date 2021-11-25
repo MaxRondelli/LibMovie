@@ -36,6 +36,8 @@ public class NotWatchedFragment extends Fragment implements LibraryRecyclerViewA
     LinearLayoutManager linearManager;
     View view;
 
+    int variabileProvaPush = 0;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
