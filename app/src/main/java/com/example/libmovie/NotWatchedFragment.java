@@ -36,8 +36,6 @@ public class NotWatchedFragment extends Fragment implements LibraryRecyclerViewA
     LinearLayoutManager linearManager;
     View view;
 
-    int variabileProvaPush = 0;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -164,7 +162,6 @@ public class NotWatchedFragment extends Fragment implements LibraryRecyclerViewA
 
                         }
 
-
                         @Override
                         public void onFailure(Call<MovieDetails> call, Throwable t) {
                         }
@@ -177,7 +174,6 @@ public class NotWatchedFragment extends Fragment implements LibraryRecyclerViewA
     public void reload() {
         movieList.clear();
         MovieDatabase mdb = MovieDatabase.getInstance(getContext());
-
 
         switch (LibraryFragment.layout) {
             case 0:
@@ -247,7 +243,6 @@ public class NotWatchedFragment extends Fragment implements LibraryRecyclerViewA
 
 
                         }
-
 
                         @Override
                         public void onFailure(Call<MovieDetails> call, Throwable t) {
