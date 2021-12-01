@@ -145,8 +145,6 @@ public class StatsFragment extends Fragment {
                                 );
 
 
-
-
                                 minutesWatched += results.getRuntime();
 
                                 System.out.println(results.getRuntime());
