@@ -9,6 +9,13 @@
     android:divider="?android:dividerHorizontal"
     android:showDividers="middle">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+
+    </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +45,7 @@
                 android:id="@+id/movies_to_watch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="10"
+                android:text="0"
                 android:gravity="center"/>
 
         </LinearLayout>
@@ -63,7 +70,7 @@
                 android:id="@+id/watched_movies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="20"
+                android:text="0"
                 android:gravity="center"/>
 
         </LinearLayout>
@@ -113,7 +120,7 @@
                 android:id="@+id/minutes_to_watch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="10"
+                android:text="0"
                 android:gravity="center"/>
 
             <TextView
@@ -129,7 +136,7 @@
                 android:id="@+id/watched_minutes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="20"
+                android:text="0"
                 android:gravity="center"/>
 
         </LinearLayout>

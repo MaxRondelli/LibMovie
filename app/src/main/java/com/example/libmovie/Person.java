@@ -20,4 +20,20 @@ public class Person {
     }
 
 
+    @NonNull
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(@NonNull String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

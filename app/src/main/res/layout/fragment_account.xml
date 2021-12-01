@@ -4,12 +4,81 @@
     android:layout_height="match_parent"
     android:id="@+id/account">
 
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/account_string"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/backdrop"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                android:background="@drawable/shape_gradient" />
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/account_string"
+                android:textSize="30sp"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/backdrop"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:layout_marginTop="60dp"
+                android:id="@+id/edit_password"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/username"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:id="@+id/confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change password"
+                android:layout_below="@+id/edit_password"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:clickable="true"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/confirm"
+                android:layout_marginTop="70dp">
+
+                <Button
+                    android:id="@+id/logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Log out"
+                    android:layout_alignParentBottom="true"/>
+
+                <Button
+                    android:id="@+id/change_region"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_toRightOf="@+id/logout"
+                    android:text="Change region" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

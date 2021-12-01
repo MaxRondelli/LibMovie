@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChangeRegionActivity">
+
+    <TextView
+        android:id="@+id/choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current choice: "
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="20dp"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <RadioButton
+            android:id="@+id/us"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="United States"
+            android:checked="true"/>
+
+
+        <RadioButton
+            android:id="@+id/it"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Italy"/>
+
+        <RadioButton
+            android:id="@+id/lt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lithuania"/>
+
+        <RadioButton
+            android:id="@+id/uk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="United Kingdom"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/apply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radio_group"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Apply" />
+
+</RelativeLayout>

@@ -36,6 +36,7 @@
         <entry key="app/src/main/res/drawable/shape_signin.xml" value="0.23541666666666666" />
         <entry key="app/src/main/res/drawable/signin_button.xml" value="0.22447916666666667" />
         <entry key="app/src/main/res/drawable/stats.xml" value="0.22916666666666666" />
+        <entry key="app/src/main/res/layout/activity_change_region.xml" value="0.1838768115942029" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_movie_details.xml" value="0.14488348530901723" />
