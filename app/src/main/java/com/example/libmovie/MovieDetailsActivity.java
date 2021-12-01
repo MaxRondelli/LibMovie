@@ -50,9 +50,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_add);
         Bundle extras = getIntent().getExtras();
         int id = extras.getInt("movieId");
