@@ -7,7 +7,6 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -22,7 +21,7 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="250dp"
-                android:background="@drawable/shape_gradient" />
+                android:background="@drawable/shape_gradient"/>
 
             <TextView
                 android:id="@+id/title"
@@ -34,27 +33,64 @@
                 android:fontFamily="sans-serif-condensed-medium"
                 android:maxLines="1"
                 android:textColor="@color/white"
-                android:textSize="30dp" />
+                android:textSize="30dp"/>
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="0.5"
+                android:layout_below="@+id/title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:theme="@style/RatingBar"/>
+
+            <TextView
+                android:id="@+id/year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ratingBar"
+                android:text="2020"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="15dp"
+                android:fontFamily="sans-serif-condensed-medium"/>
+
+            <TextView
+                android:id="@+id/genre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ratingBar"
+                android:layout_toRightOf="@+id/year"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="15dp"
+                android:fontFamily="sans-serif-condensed-medium"/>
+
+            <TextView
+                android:id="@+id/runtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ratingBar"
+                android:layout_toRightOf="@+id/genre"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="15dp"
+                android:fontFamily="sans-serif-condensed-medium"/>
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/backdrop"
+                android:layout_below="@+id/year"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-condensed-medium"
-                android:textColor="@color/black" />
-
-            <RatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:numStars="10"
-                android:padding="10dp"/>
-
+                android:textColor="@color/black"
+                android:textSize="20dp"/>
         </RelativeLayout>
-
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

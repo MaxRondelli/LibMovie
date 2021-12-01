@@ -66,13 +66,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
             }
         }
 
-
-
-
         floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF6200EE")));
         floatingActionButton.setImageResource(R.drawable.icon_add);
-
-
 
         Retrofit retrofit = new Retrofit.Builder().
                 baseUrl(MainActivity.BASE_URL).
@@ -97,7 +92,24 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
                 //Aggiunta descrizione
                 TextView description = (TextView) findViewById(R.id.description);
-                description.setText("Overview:\n" + results.getOverview());
+                description.setText(results.getOverview());
+
+                //Aggiunta anno uscita
+                TextView year = (TextView) findViewById(R.id.year);
+                year.setText(results.getRelease_date() + " \u2022");
+
+                //Aggiunta durata
+                TextView runtime = (TextView) findViewById(R.id.runtime);
+                runtime.setText(results.getRuntime() + " min");
+
+                //Aggiunta genere
+                TextView genres = (TextView) findViewById(R.id.genre);
+                String tmp = "";
+                for (int i = 0; i < 3; i++) {
+                    tmp += results.getGenres().get(i).getName().trim();
+                    if (i < 2) tmp += ", ";
+                }
+                genres.setText(tmp + " \u2022 ");
 
                 AppExecutors.getInstance().diskIO().execute(new Runnable() {
                     @Override

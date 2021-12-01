@@ -23,8 +23,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AccountFragment extends Fragment {
-    static String username;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,7 +31,7 @@ public class AccountFragment extends Fragment {
         PersonDatabase appDB = PersonDatabase.getInstance(getContext());
 
         TextView usernameText = (TextView) view.findViewById(R.id.username);
-        usernameText.setText("@" + LoginActivity.loggedUser);
+        usernameText.setText("Hello @" + LoginActivity.loggedUser + "!");
 
         //Log out
         Button logout = (Button) view.findViewById(R.id.logout);
