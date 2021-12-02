@@ -77,6 +77,9 @@ public interface ApiInterface {
             @Query("rating") float rating
     );
 
-
-
+    @GET("/3/movie/{movie_id}/images")
+    Call<MovieImages> listOfImages(
+            @Path("movie_id") int movie_id,
+            @Query("api_key") String apiKey
+    );
 }
