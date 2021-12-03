@@ -28,14 +28,36 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MovieDetailsActivity extends AppCompatActivity {
+    boolean hasrating = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
+        Bundle extras = getIntent().getExtras();
+        int id = extras.getInt("movieId");
+
+
 
         RatingBar rb = (RatingBar) findViewById(R.id.ratingBar);
 
         MovieDatabase mdb = MovieDatabase.getInstance(this);
+        RatingDatabase rdb = RatingDatabase.getInstance(this);
+
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                List<RatingClass> list_rating = rdb.ratingDAO().getMovieList();
+
+                for(int i=0; i<list_rating.size(); i++){
+                    if(LoginActivity.loggedUser.equals(list_rating.get(i).nickname) && list_rating.get(i).movie_id==id){
+                        rb.setRating((float)list_rating.get(i).rating);
+                        hasrating = true;
+                    }
+                }
+
+            }
+        });
+
 
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
@@ -50,9 +72,29 @@ public class MovieDetailsActivity extends AppCompatActivity {
             }
         });
 
+        rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        List<RatingClass> list_rating = rdb.ratingDAO().getMovieList();
+                        if(!hasrating){
+                            rdb.ratingDAO().insertMovie(new RatingClass(LoginActivity.loggedUser,id,rating));
+                        }
+                        else{
+                            rdb.ratingDAO().updateMovie(new RatingClass(LoginActivity.loggedUser,id,rating));
+                        }
+                    }
+                });
+
+
+            }
+
+        });
+
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_add);
-        Bundle extras = getIntent().getExtras();
-        int id = extras.getInt("movieId");
 
         // Colorazione del bottone all'apertura dell'activity
         boolean check = false;
@@ -105,7 +147,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 //Aggiunta genere
                 TextView genres = (TextView) findViewById(R.id.genre);
                 String tmp = "";
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < results.getGenres().size(); i++) {
                     tmp += results.getGenres().get(i).getName().trim();
                     if (i < 2) tmp += ", ";
                 }

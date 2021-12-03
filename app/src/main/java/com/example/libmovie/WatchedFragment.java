@@ -41,6 +41,7 @@ public class WatchedFragment extends Fragment implements LibraryRecyclerViewAdap
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_watched, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        movieList.clear();
         return view;
     }
 

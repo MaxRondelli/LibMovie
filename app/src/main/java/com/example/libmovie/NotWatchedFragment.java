@@ -42,6 +42,7 @@ public class NotWatchedFragment extends Fragment implements LibraryRecyclerViewA
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_not_watched, container, false);
+        movieList.clear();
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         return view;
     }

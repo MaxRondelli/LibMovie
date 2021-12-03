@@ -87,13 +87,13 @@ public class LibraryFragment extends Fragment {
                 switch (tab.getPosition()){
                     case 0:
                         MainActivity.sort_param = 1;
-                        if (t1) notWatchedFragment.reload();
-                        else t1 = true;
+                        //if (t1) ;// notWatchedFragment.reload();
+                        //else t1 = true;
                         break;
                     case 1:
                         MainActivity.sort_param = 1;
-                        if (t2) watchedFragment.reload();
-                        else t2 = true;
+                        //if (t2);// watchedFragment.reload();
+                        //else t2 = true;
                         break;
                 }
             }
