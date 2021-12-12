@@ -3,30 +3,37 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/drawable/background_1.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/drawable/background_2.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/drawable/background_3.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/drawable/ic_text_sort_ascending_svgrepo_com.xml" value="0.2703125" />
         <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/drawable/icon_add.xml" value="0.2703125" />
         <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/drawable/shape_add.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/activity_login.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/activity_people_details.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/activity_register.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/element_searchbar.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/fragment_account.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/fragment_coming_soon.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/fragment_director_search.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/fragment_in_theater.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/fragment_library.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/fragment_most_popular.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/fragment_people_search.xml" value="0.20969202898550723" />
         <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/fragment_search.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/fragment_top_rated.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/fragment_watched.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/listitemdesign.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/listsearchactor.xml" value="0.20969202898550723" />
+        <entry key="..\:/Users/hp/Desktop/LibMovie/app/src/main/res/layout/listsearchdesign.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/drawable/account.xml" value="0.24461538461538462" />
-        <entry key="app/src/main/res/drawable/background_1.xml" value="0.3055555555555556" />
-        <entry key="app/src/main/res/drawable/background_2.xml" value="0.3055555555555556" />
         <entry key="app/src/main/res/drawable/bg_white_rounded.xml" value="0.17604166666666668" />
         <entry key="app/src/main/res/drawable/credential_form.xml" value="0.22447916666666667" />
         <entry key="app/src/main/res/drawable/gradient.xml" value="0.29444444444444445" />
         <entry key="app/src/main/res/drawable/home.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2712962962962963" />
-        <entry key="app/src/main/res/drawable/icon_check.xml" value="0.3055555555555556" />
         <entry key="app/src/main/res/drawable/icon_home.xml" value="0.17604166666666668" />
         <entry key="app/src/main/res/drawable/logo.xml" value="0.22916666666666666" />
         <entry key="app/src/main/res/drawable/search.xml" value="0.17604166666666668" />
@@ -36,13 +43,9 @@
         <entry key="app/src/main/res/drawable/shape_signin.xml" value="0.23541666666666666" />
         <entry key="app/src/main/res/drawable/signin_button.xml" value="0.22447916666666667" />
         <entry key="app/src/main/res/drawable/stats.xml" value="0.22916666666666666" />
-        <entry key="app/src/main/res/layout/activity_change_region.xml" value="0.1838768115942029" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_movie_details.xml" value="0.14488348530901723" />
-        <entry key="app/src/main/res/layout/activity_people_details.xml" value="0.18432971014492755" />
-        <entry key="app/src/main/res/layout/activity_ranking.xml" value="0.16770833333333332" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.18931159420289856" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.15364583333333334" />
         <entry key="app/src/main/res/layout/element_searchbar.xml" value="0.18931159420289856" />
         <entry key="app/src/main/res/layout/element_toolbar.xml" value="0.25" />
@@ -62,12 +65,10 @@
         <entry key="app/src/main/res/layout/fragment_people_details.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/layout/fragment_people_search.xml" value="0.18432971014492755" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_stats.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_stats.xml" value="0.12092391304347826" />
         <entry key="app/src/main/res/layout/fragment_top_rated.xml" value="0.15989583333333332" />
-        <entry key="app/src/main/res/layout/fragment_watched.xml" value="0.3077731092436975" />
+        <entry key="app/src/main/res/layout/fragment_watched.xml" value="0.55" />
         <entry key="app/src/main/res/layout/listitemdesign.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/listmovielibrary.xml" value="0.15260416666666668" />
-        <entry key="app/src/main/res/layout/listranking.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/listsearchactor.xml" value="0.18432971014492755" />
         <entry key="app/src/main/res/layout/listsearchdesign.xml" value="0.18840579710144928" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.25" />
