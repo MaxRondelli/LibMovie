@@ -31,6 +31,10 @@
             android:exported="true"
             android:parentActivityName=".MainActivity"></activity>
         <activity
+            android:name=".RankingActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>

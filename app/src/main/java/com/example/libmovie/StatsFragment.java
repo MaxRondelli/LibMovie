@@ -42,6 +42,8 @@ public class StatsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_stats, container, false);
         MovieDatabase mdb = MovieDatabase.getInstance(getContext());
 
+
+
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             //int notWatched = 0;
             //int watched = 0;
@@ -178,6 +180,8 @@ public class StatsFragment extends Fragment {
                 System.out.println(watched);
             }
         });
+
+
 
         return view;
     }

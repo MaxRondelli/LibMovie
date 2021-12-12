@@ -149,7 +149,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 String tmp = "";
                 for (int i = 0; i < results.getGenres().size(); i++) {
                     tmp += results.getGenres().get(i).getName().trim();
-                    if (i < 2) tmp += ", ";
+                    if (i < results.getGenres().size()-1) tmp += ", ";
                 }
                 genres.setText(tmp + " \u2022 ");
 

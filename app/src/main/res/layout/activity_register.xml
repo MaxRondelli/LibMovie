@@ -44,8 +44,6 @@
         android:paddingHorizontal="20dp"
         android:paddingVertical="15dp" />
 
-
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
